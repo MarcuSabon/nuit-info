@@ -203,17 +203,20 @@ footer {
     right: 30px;
     width: 300px;
     background-color: white;
-    border-left: 5px solid #10b981; /* Vert NIRD */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-left: 5px solid #10b981;
+    /* Vert NIRD */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     font-family: sans-serif;
     z-index: 1000;
-    
+
     /* État initial : Caché et décalé vers le bas */
     opacity: 0;
     transform: translateY(50px);
-    visibility: hidden; /* Empêche de cliquer quand invisible */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond sympa */
+    visibility: hidden;
+    /* Empêche de cliquer quand invisible */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Effet rebond sympa */
 }
 
 /* État affiché */
@@ -246,7 +249,10 @@ footer {
     cursor: pointer;
     color: #999;
 }
-#closePopupBtn:hover { color: #333; }
+
+#closePopupBtn:hover {
+    color: #333;
+}
 
 .btn-mini {
     display: inline-block;
@@ -256,14 +262,16 @@ footer {
     font-weight: bold;
     font-size: 0.9rem;
 }
+
 .popup-right {
     right: 30px;
-    border-left: 5px solid #10b981; /* Vert */
+    border-left: 5px solid #10b981;
+    /* Vert */
 }
 
 /* --- Spécificités Gauche --- */
 .popup-left {
     left: 30px;
-    border-right: 5px solid #6366f1; /* Bleu (Indigo) pour changer */
+    border-right: 5px solid #6366f1;
+    /* Bleu (Indigo) pour changer */
 }
-
