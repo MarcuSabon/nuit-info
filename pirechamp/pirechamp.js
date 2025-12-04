@@ -245,6 +245,82 @@ btnNext3.addEventListener('click', () => {
     }
 });
 
+// --- MODULE 4: LA POMPE À MOTIVATION ---
+const batteryLevel = document.getElementById('battery-level');
+const batteryText = document.getElementById('battery-text');
+const btnPump = document.getElementById('btn-pump');
+const btnNext4 = document.getElementById('btn-next-4');
+const errorMsg4 = document.getElementById('error-msg-4');
+
+let currentCharge = 0;
+let decayRate = 0.5; // Vitesse de déchargement (augmente avec le temps)
+
+// 1. Le bouton ajoute de l'énergie
+btnPump.addEventListener('mousedown', () => { // mousedown pour réactivité max
+    if (currentCharge >= 100) return;
+
+    // Ajoute de la charge
+    currentCharge += 4; // Il faut ~25 clics rapides
+    updateBattery();
+    
+    // Animation visuelle du bouton
+    btnPump.style.transform = "scale(0.95)";
+    setTimeout(() => btnPump.style.transform = "scale(1)", 50);
+});
+
+// 2. La fuite d'énergie (La boucle infernale)
+setInterval(() => {
+    if (currentCharge > 0 && currentCharge < 100) {
+        // Plus on est proche du but, plus ça descend vite (sadique)
+        let dynamicDecay = decayRate;
+        if (currentCharge > 80) dynamicDecay = 1.2; 
+        
+        currentCharge -= dynamicDecay;
+        if (currentCharge < 0) currentCharge = 0;
+        updateBattery();
+    }
+}, 50); // Toutes les 50ms
+
+function updateBattery() {
+    // Bornage
+    if (currentCharge > 100) currentCharge = 100;
+    
+    // Mise à jour visuelle
+    batteryLevel.style.height = `${currentCharge}%`;
+    batteryText.innerText = `${Math.floor(currentCharge)}%`;
+    
+    // Changement de couleur selon la charge
+    if (currentCharge < 30) batteryLevel.style.backgroundColor = "#ef4444"; // Rouge
+    else if (currentCharge < 70) batteryLevel.style.backgroundColor = "#f59e0b"; // Jaune
+    else batteryLevel.style.backgroundColor = "#10b981"; // Vert
+
+    // Validation
+    if (currentCharge >= 100) {
+        finishCharging();
+    }
+}
+
+function finishCharging() {
+    currentCharge = 100;
+    batteryLevel.style.height = "100%";
+    batteryText.innerText = "MAX";
+    batteryLevel.classList.add('charged'); // Effet brillant
+    
+    btnPump.disabled = true;
+    btnPump.innerText = "CHARGE COMPLÈTE";
+    btnPump.style.backgroundColor = "#d1fae5";
+    btnPump.style.borderColor = "#10b981";
+    
+    btnNext4.disabled = false;
+    errorMsg4.classList.remove('hidden');
+    errorMsg4.style.color = "#10b981";
+    errorMsg4.innerText = "Tension stabilisée. Envoi possible.";
+    
+    statusEl.innerText = "POWER_FULL";
+}
+
+// Correction du lien vers la fin
+document.getElementById('btn-next-4').addEventListener('click', () => goToStep(5));
 
 // --- FINALE ---
 document.getElementById('btn-redirect-snake').addEventListener('click', () => {

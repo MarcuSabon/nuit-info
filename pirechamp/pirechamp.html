@@ -86,6 +86,31 @@
         </section>
 
         <section id="step-4" class="step">
+          <div class="progress-bar"><div class="fill" style="width: 90%"></div></div>
+          <h2>Module 4 : Preuve de Motivation</h2>
+          <p class="instruction">Nos serveurs sont en mode "Éco-Énergie". Veuillez <strong>générer manuellement</strong> l'électricité nécessaire à l'envoi du dossier.</p>
+          
+          <div class="field-container">
+            <div class="energy-wrapper">
+                <div class="battery-container">
+                    <div id="battery-level" class="battery-level" style="height: 0%"></div>
+                    <span id="battery-text">0%</span>
+                </div>
+                
+                <p class="mini-instruction">Cliquez frénétiquement pour charger</p>
+            </div>
+            
+            <div id="error-msg-4" class="error-text hidden">Allez plus vite ! L'énergie se dissipe !</div>
+          </div>
+
+          <div class="controls">
+            <button id="btn-pump" class="btn secondary pump-btn">🔋 GÉNÉRER DE L'ÉNERGIE</button>
+            
+            <button id="btn-next-4" class="btn primary" disabled>Valider &rarr;</button>
+          </div>
+        </section>
+
+        <section id="step-5" class="step">
           <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
           <h1>Validation Complétée !</h1>
           <p class="message-box success">
