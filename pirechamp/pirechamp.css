@@ -1,10 +1,231 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); /* Bleu profond tech */
+    --accent-blue: #4a90e2;
+    --accent-hover: #357abd;
+    --card-bg: #ffffff;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --warning: #f1c40f;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    color: var(--text-dark);
 }
+
+/* Effet de fond subtil (simule le réseau de l'image) */
+.background-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255,255,255,0.05) 0%, transparent 20%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px; /* Largeur agrandie pour les cartes */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.brain-icon {
+    width: 40px;
+    height: 40px;
+    stroke: var(--text-light);
+}
+
 h1 {
-    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+    line-height: 1.2;
 }
-p {
-    font-size: 16px;
-    line-height: 1.5;
+
+.subtitle {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.warning {
+    font-size: 0.8rem;
+    color: var(--warning);
+    font-weight: 400;
+}
+
+/* CARTES */
+.card {
+    background: var(--card-bg);
+    width: 100%;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Style succès pour valider une carte */
+.card.success-state {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+.card.success-state::after {
+    content: "✓";
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 1.5rem;
+    color: green;
+    font-weight: bold;
+}
+
+.card h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* INPUTS */
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #555;
+    outline: none;
+    transition: border-color 0.3s;
+    background: #f9f9f9;
+}
+
+input:focus {
+    border-color: var(--accent-blue);
+    background: #fff;
+}
+
+/* BOUTONS */
+.btn-primary {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(74, 144, 226, 0.3);
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+/* --- MODULE 1 : QUANTUM SPECIFICS --- */
+.quantum-group { position: relative; }
+/* Input qui bouge légèrement */
+.quantum-shift {
+    transform: translate(var(--tx), var(--ty));
+    transition: transform 0.1s steps(2);
+}
+
+/* --- MODULE 2 : GAUGE SPECIFICS --- */
+.gauge-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+    padding-top: 15px;
+}
+
+.gauge-track {
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    position: relative;
+    margin-top: 10px;
+}
+
+.gauge-cursor {
+    width: 12px;
+    height: 12px;
+    background: #888;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: left 0.2s ease, background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.label-left { position: absolute; left: 0; top: 0; font-size: 0.75rem; color: #666; }
+.label-right { position: absolute; right: 0; top: 0; font-size: 0.75rem; color: #666; }
+.label-title { font-size: 0.8rem; color: #888; font-weight: 500; }
+
+/* --- MODULE 3 : ROTATION SPECIFICS --- */
+.perspective-container {
+    perspective: 600px;
+}
+.rotating-element {
+    transform-style: preserve-3d;
+    transition: transform 0.2s;
+}
+
+.fleeing-btn {
+    position: relative; 
+    /* Important pour le déplacement JS */
+}
+
+/* --- SNAKE & FINALE --- */
+.hidden { display: none; }
+#game-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#snake-canvas {
+    background: #0f2027; /* Fond du jeu assorti au site */
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.score { margin-top: 10px; font-weight: bold; color: var(--accent-blue); }
+
+.status-msg {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #e74c3c;
+    min-height: 1.2em;
 }

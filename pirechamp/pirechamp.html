@@ -1,11 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Champ de saisie</title>
+    <title>Centre de Validation Expérimentale</title>
+    <link rel="stylesheet" href="pirechamp.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <p>Bienvenu sur la page pour les pires Champ de saisie</p>
+
+    <div class="background-overlay"></div>
+
+    <main class="container">
+        
+        <header>
+            <div class="logo-area">
+                <svg class="brain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9.5 20c-2.5 0-4.5-2-4.5-4.5S7 11 9.5 11c0 0 .5-3.5 4.5-3.5 3 0 4.5 2.5 4.5 2.5 2.5 0 4.5 2 4.5 4.5s-2 4.5-4.5 4.5c0 0-1 2.5-4.5 2.5-2 0-3-1.5-4.5-2.5z"></path>
+                    <path d="M9.5 11a4.5 4.5 0 0 1 0-9 4.5 4.5 0 0 1 0 9z"></path>
+                </svg>
+                <h1>CENTRE DE VALIDATION<br>EXPÉRIMENTALE</h1>
+            </div>
+            <p class="subtitle">Bienvenue. Vous êtes éligible à une récompense exclusive !</p>
+            <p class="warning">⚠️ Système de saisie en test (Frustration = Fonctionnalité).</p>
+        </header>
+
+        <div class="card" id="card-1">
+            <h2>Votre Code Postal</h2>
+            <div class="input-group quantum-group">
+                <input type="text" id="quantum-input" placeholder="Entrez votre code postal" autocomplete="off">
+            </div>
+            <button class="btn-primary" id="btn-quantum">Valider la saisie</button>
+            <div class="status-msg" id="msg-1"></div>
+        </div>
+
+        <div class="card" id="card-2">
+            <h2>Votre Prénom</h2>
+            
+            <div class="gauge-wrapper">
+                <span class="label-left">Neutre</span>
+                <span class="label-title">Humeur de saisie</span>
+                <span class="label-right">Stress</span>
+                
+                <div class="gauge-track">
+                    <div class="gauge-fill" id="gauge-fill"></div>
+                    <div class="gauge-cursor" id="gauge-cursor"></div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="mood-input" placeholder="Entrez votre prénom" autocomplete="off">
+            </div>
+            <div class="status-msg" id="msg-2"></div>
+        </div>
+
+        <div class="card" id="card-3">
+            <h2>Votre Adresse Email</h2>
+            
+            <div class="perspective-container">
+                <div class="rotating-element" id="rotating-box">
+                    <input type="email" id="rotation-input" placeholder="email@exemple.com" autocomplete="off">
+                </div>
+            </div>
+
+            <button class="btn-primary fleeing-btn" id="btn-rotate">Confirmer l'adresse</button>
+            <div class="status-msg" id="msg-3"></div>
+        </div>
+
+        <div class="card finale-card hidden" id="card-finale">
+            <h2>Validation Complétée</h2>
+            <p>Félicitations ! Vous avez terminé le formulaire.</p>
+            
+            <button class="btn-primary" id="start-snake">Jouer au Snake 🐍</button>
+
+            <div id="game-container" class="hidden">
+                <canvas id="snake-canvas" width="300" height="300"></canvas>
+                <div class="score">Score: <span id="score-val">0</span></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="pirechamp.js"></script>
 </body>
 </html>
