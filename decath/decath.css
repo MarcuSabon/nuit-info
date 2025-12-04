@@ -105,3 +105,16 @@ video {
 }
 
 .playing .play-hint { opacity: 0; }
+
+/* Style spécifique pour le bouton Decathlon */
+header a.btn-decath {
+    background-color: #0082C3; /* Le Bleu Officiel Decathlon */
+    margin-left: 10px;         /* Un peu d'espace avec l'autre bouton */
+    border: 1px solid #0082C3;
+}
+
+header a.btn-decath:hover {
+    background-color: #006699; /* Bleu un peu plus sombre au survol */
+    border-color: #006699;
+    transform: translateY(-2px); /* Petit effet de rebond */
+}
