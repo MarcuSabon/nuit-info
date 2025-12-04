@@ -1,5 +1,14 @@
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-import { db } from "./firebase-config.js";
+// import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+// import { db } from "./firebase-config.js";
+
+console.log("Position actuelle : " + window.scrollY + "px");
+console.log("AAAH");
+window.addEventListener('scroll', function () {
+    // window.scrollY nous donne la position verticale en pixels
+    console.log("Position actuelle : " + window.scrollY + "px");
+    console.log("Hauteur totale de la page : " + (this.document.body.clientHeight - this.window.innerHeight) + "px");
+});
+
 
 async function ajouterUtilisateur(nom, age) {
     try {
@@ -15,3 +24,77 @@ async function ajouterUtilisateur(nom, age) {
 }
 // exemple pour ajouter une utilisateur
 // ajouterUtilisateur("Alice", 25);
+
+document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById('nirdPopup1');
+    const closeBtn = document.getElementById('closePopup1Btn');
+
+    // Variable pour savoir si l'utilisateur a fermé la pop-up manuellement
+    let isClosedByUser = false;
+
+    // Seuil de déclenchement (en pixels)
+    const scrollThreshold = 0.50 * document.body.scrollHeight;
+
+    window.addEventListener('scroll', function () {
+        // Si l'utilisateur a fermé la fenêtre, on ne fait plus rien
+        if (isClosedByUser) return;
+
+        // Si on a dépassé le seuil
+        if (window.scrollY > scrollThreshold) {
+            popup.classList.add('show');
+        } else {
+            // Optionnel : La cacher si on remonte tout en haut
+            popup.classList.remove('show');
+        }
+    });
+
+    // Gestion du bouton Fermer
+    closeBtn.addEventListener('click', function () {
+        popup.classList.remove('show');
+        isClosedByUser = true; // On retient que l'utilisateur l'a fermée
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById('nirdPopup2');
+    const closeBtn = document.getElementById('closePopup2Btn');
+
+    // Variable pour savoir si l'utilisateur a fermé la pop-up manuellement
+    let isClosedByUser = false;
+
+    // Seuil de déclenchement (en pixels)
+    const scrollThreshold = 0.70 * document.body.scrollHeight;
+
+    window.addEventListener('scroll', function () {
+        // Si l'utilisateur a fermé la fenêtre, on ne fait plus rien
+        if (isClosedByUser) return;
+
+        // Si on a dépassé le seuil
+        if (window.scrollY > scrollThreshold) {
+            popup.classList.add('show');
+        } else {
+            // Optionnel : La cacher si on remonte tout en haut
+            popup.classList.remove('show');
+        }
+    });
+
+    // Gestion du bouton Fermer
+    closeBtn.addEventListener('click', function () {
+        popup.classList.remove('show');
+        isClosedByUser = true; // On retient que l'utilisateur l'a fermée
+    });
+});
+
+var clicked = true;
+document.addEventListener('click', function () {
+
+    if (clicked)
+    if (window.scrollY > 0.60 * document.body.scrollHeight) {
+        // L'URL que vous voulez ouvrir
+        const urlCible = "./popup/popup.html";
+
+        // Ouvre l'URL dans un nouvel onglet ('_blank')
+        window.open(urlCible, '_blank');
+        clicked=false;
+    }
+});
