@@ -1,255 +1,239 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- ETAT GLOBAL ---
-    const state = {
-        m1: false,
-        m2: false,
-        m3: false
-    };
 
-    function checkVictory() {
-        if (state.m1 && state.m2 && state.m3) {
-            document.getElementById('card-finale').classList.remove('hidden');
-            // Scroll smooth vers le bas
-            setTimeout(() => {
-                document.getElementById('card-finale').scrollIntoView({ behavior: 'smooth' });
-            }, 500);
-        }
+// State Management
+const state = {
+  currentStep: 0,
+  quantumLocked: false,
+  quantumValue: '',
+  moodScore: 50, // 0 (angry) to 100 (happy)
+  lastKeyTime: 0,
+  rotationY: 0,
+  rotationX: 0,
+  stabilized: false
+};
+
+// DOM Elements
+const steps = document.querySelectorAll('.step');
+const statusEl = document.getElementById('system-status');
+
+// Navigation Logic
+function goToStep(index) {
+  steps[state.currentStep].classList.remove('active');
+  state.currentStep = index;
+  
+  setTimeout(() => {
+    steps[state.currentStep].classList.add('active');
+  }, 300); // Delay for transition
+}
+
+document.getElementById('btn-start').addEventListener('click', () => goToStep(1));
+document.getElementById('btn-next-1').addEventListener('click', () => goToStep(2));
+document.getElementById('btn-next-2').addEventListener('click', () => goToStep(3));
+document.getElementById('btn-next-3').addEventListener('click', () => goToStep(4));
+
+// --- MODULE 1: QUANTUM FIELD ---
+const qInput = document.getElementById('input-quantum');
+const qValDisplay = document.getElementById('q-val');
+const btnMeasure = document.getElementById('btn-measure');
+const btnNext1 = document.getElementById('btn-next-1');
+
+const qPlaceholders = ["Code postal", "Votre ADN ?", "Rien", "Écrivez pas !", "404 Not Found", "???", "Vitesse lumière"];
+
+qInput.addEventListener('mouseover', () => {
+  if (!state.quantumLocked) {
+    const randomText = qPlaceholders[Math.floor(Math.random() * qPlaceholders.length)];
+    qInput.setAttribute('placeholder', randomText);
+    
+    // Slight movement
+    const x = (Math.random() - 0.5) * 20;
+    const y = (Math.random() - 0.5) * 20;
+    qInput.style.transform = `translate(${x}px, ${y}px)`;
+  }
+});
+
+qInput.addEventListener('input', (e) => {
+  if (state.quantumLocked) return;
+  
+  const val = e.target.value;
+  // Show something slightly different
+  const garbled = val.split('').map(c => Math.random() > 0.7 ? String.fromCharCode(c.charCodeAt(0) + 1) : c).join('');
+  qValDisplay.innerText = garbled;
+});
+
+btnMeasure.addEventListener('click', () => {
+  state.quantumLocked = true;
+  qInput.classList.add('jitter');
+  btnMeasure.innerText = "MESURE EN COURS...";
+  
+  setTimeout(() => {
+    state.quantumLocked = false;
+    qInput.classList.remove('jitter');
+    btnMeasure.innerText = "Mesurer la donnée";
+    btnNext1.disabled = false;
+    qValDisplay.innerText = "STABILISÉ (APPROX)";
+    statusEl.innerText = "QUANTUM_FIXED";
+    statusEl.style.color = "var(--accent-color)";
+  }, 1000);
+});
+
+
+// --- MODULE 2: MOOD SWING ---
+const mInput = document.getElementById('input-mood');
+const moodText = document.getElementById('mood-text');
+const btnNext2 = document.getElementById('btn-next-2');
+
+mInput.addEventListener('keydown', (e) => {
+  const now = Date.now();
+  const diff = now - state.lastKeyTime;
+  state.lastKeyTime = now;
+  
+  let mood = "NEUTRE";
+  
+  // Logic: Too fast (<100ms) = Angry. Too slow (>500ms) = Bored/Sarcastic
+  if (diff < 100) {
+    mood = "AGACÉ";
+    mInput.classList.add('angry');
+    mInput.classList.remove('happy');
+    
+    // Delete random char
+    if (Math.random() > 0.5 && mInput.value.length > 0) {
+      setTimeout(() => {
+        mInput.value = mInput.value.slice(0, -1);
+      }, 50);
     }
-
-    // ==========================================
-    // MODULE 1 : CODE POSTAL (Quantum)
-    // ==========================================
-    const qInput = document.getElementById('quantum-input');
-    const qBtn = document.getElementById('btn-quantum');
-    const qMsg = document.getElementById('msg-1');
-    let isFrozen = false;
-
-    // Le placeholder changeant
-    const placeholders = ["75001", "Code Postal ?", "Pas ici...", "Erreur 404", "Votre ADN ?", "99999"];
+  } else if (diff > 500) {
+    mood = "ENNUYÉ";
+    mInput.classList.remove('angry');
     
-    setInterval(() => {
-        if (!isFrozen && !state.m1) {
-            qInput.placeholder = placeholders[Math.floor(Math.random() * placeholders.length)];
-        }
-    }, 900);
-
-    // Ça bouge quand on essaie de cliquer ou taper
-    qInput.addEventListener('mousemove', () => {
-        if (!isFrozen && !state.m1) {
-            const x = (Math.random() - 0.5) * 30;
-            const y = (Math.random() - 0.5) * 10;
-            qInput.style.transform = `translate(${x}px, ${y}px)`;
-        }
-    });
-
-    // Bouton "Valider" qui sert en fait à figer
-    qBtn.textContent = "Stabiliser la zone (1s)";
-    
-    qBtn.addEventListener('click', () => {
-        isFrozen = true;
-        qInput.style.transform = 'translate(0,0)';
-        qInput.style.borderColor = '#27ae60'; // Vert
-        qBtn.textContent = "Zone Figée ! Vite !";
-        
-        setTimeout(() => {
-            if (!state.m1) {
-                isFrozen = false;
-                qInput.style.borderColor = '#ddd';
-                qBtn.textContent = "Stabiliser la zone (1s)";
-                qInput.value = ""; // Sadique : on efface si pas validé
-                qMsg.textContent = "Donnée perdue. Recommencez.";
-            }
-        }, 1500); // 1.5 secondes pour taper
-    });
-
-    qInput.addEventListener('input', () => {
-        // Si figé et qu'on a tapé 5 chiffres
-        if (isFrozen && qInput.value.length === 5) {
-            state.m1 = true;
-            document.getElementById('card-1').classList.add('success-state');
-            qMsg.textContent = "";
-            checkVictory();
-        }
-    });
-
-
-    // ==========================================
-    // MODULE 2 : PRÉNOM (Mood Swing)
-    // ==========================================
-    const mInput = document.getElementById('mood-input');
-    const gaugeCursor = document.getElementById('gauge-cursor');
-    const mMsg = document.getElementById('msg-2');
-    let lastKeyTime = Date.now();
-
-    mInput.addEventListener('keydown', (e) => {
-        if (state.m2) return;
-        if (e.key.length > 1 && e.key !== 'Backspace') return;
-
-        const now = Date.now();
-        const diff = now - lastKeyTime;
-        lastKeyTime = now;
-
-        // Logique de tempo (cible : entre 200ms et 500ms)
-        if (diff < 150) {
-            // Trop vite (Stress)
-            gaugeCursor.style.left = '90%';
-            gaugeCursor.style.backgroundColor = '#e74c3c'; // Rouge
-            mMsg.textContent = "Trop vite ! Le système panique.";
-            
-            if (Math.random() > 0.4) {
-                e.preventDefault(); // Mange la lettre
-                mInput.value = mInput.value.slice(0, -1);
-            }
-        } else if (diff > 800) {
-            // Trop lent (Ennui)
-            gaugeCursor.style.left = '10%';
-            gaugeCursor.style.backgroundColor = '#3498db'; // Bleu
-            mMsg.textContent = "Zzz... Le système s'endort.";
-            
-            // Ajoute des lettres parasites
-            setTimeout(() => { mInput.value += "z"; }, 50);
-        } else {
-            // OK
-            gaugeCursor.style.left = '50%';
-            gaugeCursor.style.backgroundColor = '#27ae60'; // Vert
-            mMsg.textContent = "";
-        }
-
-        // Validation si longueur suffisante et curseur au milieu
-        if (mInput.value.length > 3 && gaugeCursor.style.left === '50%') {
-            // On attend une petite pause pour valider
-            setTimeout(() => {
-                if (mInput.value.length > 3) {
-                    state.m2 = true;
-                    document.getElementById('card-2').classList.add('success-state');
-                    checkVictory();
-                }
-            }, 1000);
-        }
-    });
-
-
-    // ==========================================
-    // MODULE 3 : EMAIL (Rotation 3D)
-    // ==========================================
-    const rInput = document.getElementById('rotation-input');
-    const rBox = document.getElementById('rotating-box');
-    const rBtn = document.getElementById('btn-rotate');
-    const rMsg = document.getElementById('msg-3');
-    let angle = 0;
-
-    rInput.addEventListener('input', () => {
-        if (state.m3) return;
-        angle += 30;
-        rBox.style.transform = `rotateY(${angle}deg)`;
-        
-        // Rend le texte flou si ça tourne trop
-        if (angle % 360 !== 0) {
-            rInput.style.filter = "blur(1px)";
-        } else {
-            rInput.style.filter = "none";
-        }
-    });
-
-    // Bouton fuyant
-    rBtn.addEventListener('mouseover', () => {
-        if (state.m3) return;
-        // Déplacement aléatoire léger
-        const tx = (Math.random() - 0.5) * 150;
-        const ty = (Math.random() - 0.5) * 50;
-        rBtn.style.transform = `translate(${tx}px, ${ty}px)`;
-    });
-
-    rBtn.addEventListener('click', () => {
-        if (rInput.value.includes('@') && rInput.value.includes('.')) {
-            state.m3 = true;
-            rBox.style.transform = "rotateY(0deg)";
-            rBtn.style.transform = "none";
-            document.getElementById('card-3').classList.add('success-state');
-            checkVictory();
-        } else {
-            rMsg.textContent = "Email invalide ou vertige détecté.";
-        }
-    });
-
-
-    // ==========================================
-    // SNAKE GAME (Récompense)
-    // ==========================================
-    const canvas = document.getElementById('snake-canvas');
-    const ctx = canvas.getContext('2d');
-    const startBtn = document.getElementById('start-snake');
-    
-    let snake = [{x: 10, y: 10}];
-    let food = {x: 5, y: 5};
-    let dx = 0; let dy = 0;
-    let score = 0;
-    let gameLoop;
-
-    startBtn.addEventListener('click', () => {
-        document.getElementById('game-container').classList.remove('hidden');
-        startBtn.style.display = 'none';
-        
-        // Config initiale
-        dx = 1; dy = 0;
-        document.addEventListener('keydown', changeDirection);
-        gameLoop = setInterval(draw, 100);
-    });
-
-    function changeDirection(e) {
-        const LEFT = 37; const RIGHT = 39; const UP = 38; const DOWN = 40;
-        const key = e.keyCode;
-        
-        if (key === LEFT && dx !== 1) { dx = -1; dy = 0; }
-        if (key === UP && dy !== 1) { dx = 0; dy = -1; }
-        if (key === RIGHT && dx !== -1) { dx = 1; dy = 0; }
-        if (key === DOWN && dy !== -1) { dx = 0; dy = 1; }
+    // Add random char
+    if (Math.random() > 0.7) {
+      const chars = "xyz...???";
+      mInput.value += chars[Math.floor(Math.random() * chars.length)];
     }
+    
+    const sarcasms = ["Ah bon ?", "T’es sûr ?", "Je préférais avant…", "Bof.", "Tu tapes lentement..."];
+    mInput.setAttribute('placeholder', sarcasms[Math.floor(Math.random() * sarcasms.length)]);
+  } else {
+    mood = "CONTENT";
+    mInput.classList.remove('angry');
+    mInput.classList.add('happy');
+  }
+  
+  moodText.innerText = mood;
+});
 
-    function draw() {
-        // Calcul position
-        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
-        
-        // Limites (Wrap around ou Game Over - ici Wrap around pour être sympa)
-        if (head.x < 0) head.x = 14;
-        if (head.x > 14) head.x = 0;
-        if (head.y < 0) head.y = 14;
-        if (head.y > 14) head.y = 0;
 
-        // Collision corps
-        for (let part of snake) {
-            if (part.x === head.x && part.y === head.y) {
-                // Reset simple
-                snake = [{x: 10, y: 10}];
-                score = 0;
-                document.getElementById('score-val').innerText = score;
-                return;
-            }
-        }
+// --- MODULE 3: 3D ROTATION ---
+const dInput = document.getElementById('input-3d');
+const dWrapper = document.getElementById('wrapper-3d');
+const btnStabilize = document.getElementById('btn-stabilize');
 
-        snake.unshift(head);
+dInput.addEventListener('input', () => {
+  if (state.stabilized) return;
+  
+  state.rotationY += 30;
+  dWrapper.style.transform = `rotateY(${state.rotationY}deg) rotateX(${state.rotationX}deg)`;
+  
+  if (dInput.value.length > 5) {
+    dInput.style.filter = "blur(2px)";
+  }
+});
 
-        // Manger
-        if (head.x === food.x && head.y === food.y) {
-            score++;
-            document.getElementById('score-val').innerText = score;
-            food = {
-                x: Math.floor(Math.random() * 15),
-                y: Math.floor(Math.random() * 15)
-            };
-        } else {
-            snake.pop();
-        }
-
-        // Dessin
-        ctx.fillStyle = '#0f2027'; // Fond
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#4a90e2'; // Snake Bleu
-        snake.forEach(p => ctx.fillRect(p.x * 20, p.y * 20, 18, 18));
-
-        ctx.fillStyle = '#f1c40f'; // Pomme Jaune
-        ctx.fillRect(food.x * 20, food.y * 20, 18, 18);
+btnStabilize.addEventListener('mouseover', (e) => {
+    // Move button away slightly on hover
+    if (Math.random() > 0.5) {
+        const x = (Math.random() - 0.5) * 100;
+        const y = (Math.random() - 0.5) * 50;
+        btnStabilize.style.transform = `translate(${x}px, ${y}px)`;
     }
 });
+
+btnStabilize.addEventListener('click', () => {
+  state.stabilized = true;
+  state.rotationY = 0;
+  state.rotationX = 0;
+  dWrapper.style.transform = `rotateY(0deg) rotateX(0deg)`;
+  dInput.style.filter = "none";
+  btnStabilize.innerText = "STABILISÉ";
+  btnStabilize.disabled = true;
+  btnStabilize.style.transform = "none";
+});
+
+// --- FINALE: SNAKE GAME ---
+const btnSnake = document.getElementById('btn-snake');
+const snakeContainer = document.getElementById('snake-container');
+const canvas = document.getElementById('snake-canvas');
+const ctx = canvas.getContext('2d');
+
+btnSnake.addEventListener('click', () => {
+  snakeContainer.classList.remove('hidden');
+  btnSnake.style.display = 'none';
+  initSnake();
+});
+
+function initSnake() {
+  const gridSize = 20;
+  const tileCount = canvas.width / gridSize;
+  let velocityX = 0;
+  let velocityY = 0;
+  let playerX = 10;
+  let playerY = 10;
+  let trail = [];
+  let tail = 5;
+  let appleX = 15;
+  let appleY = 15;
+  
+  // Start moving right immediately
+  velocityX = 1;
+  velocityY = 0;
+
+  function gameLoop() {
+    playerX += velocityX;
+    playerY += velocityY;
+    
+    if (playerX < 0) playerX = tileCount - 1;
+    if (playerX > tileCount - 1) playerX = 0;
+    if (playerY < 0) playerY = tileCount - 1;
+    if (playerY > tileCount - 1) playerY = 0;
+    
+    // Background
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Snake
+    ctx.fillStyle = "#00ff9d"; // Accent color
+    for (let i = 0; i < trail.length; i++) {
+      ctx.fillRect(trail[i].x * gridSize, trail[i].y * gridSize, gridSize - 2, gridSize - 2);
+      if (trail[i].x === playerX && trail[i].y === playerY) {
+        tail = 5; // Reset on self collision
+      }
+    }
+    
+    trail.push({ x: playerX, y: playerY });
+    while (trail.length > tail) {
+      trail.shift();
+    }
+    
+    // Apple
+    ctx.fillStyle = "#ff0055"; // Error color
+    ctx.fillRect(appleX * gridSize, appleY * gridSize, gridSize - 2, gridSize - 2);
+    
+    if (appleX === playerX && appleY === playerY) {
+      tail++;
+      appleX = Math.floor(Math.random() * tileCount);
+      appleY = Math.floor(Math.random() * tileCount);
+    }
+  }
+  
+  document.addEventListener('keydown', keyPush);
+  
+  function keyPush(evt) {
+    switch(evt.key) {
+      case 'ArrowLeft': velocityX = -1; velocityY = 0; break;
+      case 'ArrowUp': velocityX = 0; velocityY = -1; break;
+      case 'ArrowRight': velocityX = 1; velocityY = 0; break;
+      case 'ArrowDown': velocityX = 0; velocityY = 1; break;
+    }
+  }
+  
+  setInterval(gameLoop, 1000 / 15); // 15 FPS
+}
