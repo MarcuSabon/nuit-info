@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Mon Profil Sportif</title>
+    
+    <link rel="stylesheet" href="qcm.css">
+</head>
+<body>
+    <h1>Profil Sportif</h1>
+    
+    <form id="monFormulaire">
+        <div class="question">
+            <label for="prenom">Votre Prénom :</label>
+            <input type="text" id="prenom" required placeholder="Ex: Alex">
+        </div>
+
+        <div class="question">
+            <label for="niveau">Votre niveau actuel :</label>
+            <select id="niveau" required>
+                <option value="debutant">Débutant (Je commence)</option>
+                <option value="confirme">Confirmé (Je m'entraîne déjà)</option>
+                <option value="expert">Expert (Je suis une machine)</option>
+            </select>
+        </div>
+
+        <button type="submit">Valider et voir mes exercices</button>
+    </form>
+
+    <script src="qcm.js"></script>
+</body>
+</html>

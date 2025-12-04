@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Centre de Validation Expérimentale</title>
+    
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="pirechamp.css" />
+  </head>
+  <body>
+    <div class="scan-line"></div>
+    <div class="noise"></div>
+    
+    <div class="container">
+      <header>
+        <div class="logo">CVE // SYSTEM_V.0.9.2</div>
+        <div class="status">STATUS: <span id="system-status">UNSTABLE</span></div>
+      </header>
+
+      <main id="app">
+        
+        <section id="step-0" class="step active">
+          <h1>🎉 Bienvenue dans le Centre de Validation Expérimentale.</h1>
+          <p class="message-box">
+            <span class="icon">ℹ️</span>
+            Bonne nouvelle : vous êtes éligible à une récompense exclusive !
+            <br><br>
+            Pour finaliser l’opération, nous devons vérifier quelques informations simples. 
+            Petit détail : notre système de saisie est actuellement en phase de test…
+            <br><br>
+            <small>Certains modules ne réagissent pas exactement comme prévu. Merci de compléter le formulaire ci-dessous. (Toute frustration ressentie est considérée comme une fonctionnalité.)</small>
+          </p>
+          <button id="btn-start" class="btn primary">Commencer le protocole</button>
+        </section>
+
+        <section id="step-1" class="step">
+          <div class="progress-bar"><div class="fill" style="width: 25%"></div></div>
+          <h2>🟥 ÉPREUVE 1 : Le Champ Quantique</h2>
+          <p class="instruction">Saisie demandée : <strong>Un code postal</strong> ou un mot simple.</p>
+          
+          <div class="field-container">
+            <input type="text" id="input-quantum" class="quantum-input" placeholder="Code postal" autocomplete="off">
+            <div id="quantum-value-display" class="quantum-value">Valeur détectée : <span id="q-val">NÉANT</span></div>
+          </div>
+
+          <div class="controls">
+            <button id="btn-measure" class="btn secondary">Mesurer la donnée</button>
+            <button id="btn-next-1" class="btn primary" disabled>Suivant &rarr;</button>
+          </div>
+        </section>
+
+        <section id="step-2" class="step">
+          <div class="progress-bar"><div class="fill" style="width: 50%"></div></div>
+          <h2>🟧 ÉPREUVE 2 : Le Champ "Mood Swing"</h2>
+          <p class="instruction">Saisie demandée : <strong>Votre Prénom</strong> ou <strong>Ville</strong>.</p>
+          
+          <div class="field-container">
+            <div class="mood-indicator">Humeur du champ : <span id="mood-text">NEUTRE</span></div>
+            <input type="text" id="input-mood" class="mood-input" placeholder="Votre réponse ici..." autocomplete="off">
+          </div>
+
+          <div class="controls">
+            <button id="btn-next-2" class="btn primary">Suivant &rarr;</button>
+          </div>
+        </section>
+
+        <section id="step-3" class="step">
+          <div class="progress-bar"><div class="fill" style="width: 75%"></div></div>
+          <h2>🟨 ÉPREUVE 3 : La Rotation 3D</h2>
+          <p class="instruction">Saisie demandée : <strong>Une date</strong> ou <strong>un Email</strong>.</p>
+          
+          <div class="field-container perspective-container">
+            <div class="input-wrapper-3d" id="wrapper-3d">
+              <input type="text" id="input-3d" class="input-3d" placeholder="Saisie dimensionnelle" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="controls">
+            <button id="btn-stabilize" class="btn secondary">Stabiliser</button>
+            <button id="btn-next-3" class="btn primary">Terminer</button>
+          </div>
+        </section>
+
+        <section id="step-4" class="step">
+          <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
+          <h1>🎉 Validation Complétée !</h1>
+          <p class="message-box success">
+            Vous venez de traverser les trois modules de notre formulaire expérimental. 
+            Peu d’utilisateurs arrivent jusqu’ici — félicitations pour votre persévérance.
+            <br><br>
+            Pour vous récompenser d’avoir survécu à cette expérience anti-ergonomique, voici un accès privilégié à notre espace détente.
+          </p>
+          
+          <button id="btn-redirect-snake" class="btn special">👉 Jouer au Snake 🐍</button>
+        </section>
+
+      </main>
+    </div>
+
+    <script type="module" src="pirechamp.js"></script>
+  </body>
+</html>

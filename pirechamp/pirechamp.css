@@ -1,0 +1,341 @@
+:root {
+  --bg-color: #f3f4f6;
+  --text-color: #1f2937;
+  --accent-color: #2563eb; 
+  --accent-hover: #1d4ed8;
+  --error-color: #ef4444;
+  --warn-color: #f59e0b;
+  --panel-bg: #ffffff;
+  --border-color: #e5e7eb;
+  
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5;
+}
+
+/* Container Principal */
+.container {
+  width: 90%;
+  max-width: 640px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 3rem;
+  position: relative;
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+  z-index: 10;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.logo {
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: -0.025em;
+}
+
+.status span {
+  background: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* Typo */
+h1 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  margin-bottom: 1.5rem;
+  color: #111827;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  color: #4b5563;
+}
+
+.instruction {
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+/* Messages Box */
+.message-box {
+  background: #eff6ff;
+  border-left: 4px solid var(--accent-color);
+  padding: 1.5rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+
+.message-box small {
+  display: block;
+  margin-top: 0.5rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.message-box.success {
+  background: #ecfdf5;
+  border-left-color: #10b981;
+  color: #065f46;
+}
+
+/* Inputs Standard */
+input {
+  width: 100%;
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-color);
+  padding: 1rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+}
+
+.btn.primary {
+  background: var(--accent-color);
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn.primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  background: white;
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.btn.secondary:hover {
+  border-color: var(--text-color);
+  background: #f9fafb;
+}
+
+.btn.special {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  width: 100%;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+}
+.btn.special:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.5);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #e5e7eb;
+  color: #9ca3af;
+  box-shadow: none;
+}
+
+/* Step Management */
+.step {
+  display: none;
+  opacity: 0;
+}
+
+.step.active {
+  display: block;
+  opacity: 1;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #f3f4f6;
+  border-radius: 100px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+
+.progress-bar .fill {
+  height: 100%;
+  background: var(--accent-color);
+  border-radius: 100px;
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* --- EPREUVE 1 : QUANTIQUE --- */
+.quantum-input {
+  /* Transition de mouvement fluide */
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quantum-input.jitter {
+  animation: jitter 0.2s infinite;
+  border-color: var(--warn-color);
+  background: #fffbeb;
+}
+
+@keyframes jitter {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(2px, 2px); }
+  50% { transform: translate(-2px, -2px); }
+  75% { transform: translate(-2px, 2px); }
+  100% { transform: translate(2px, -2px); }
+}
+
+.quantum-value {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-family: var(--font-mono);
+  background: #f3f4f6;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: block;
+  text-align: center;
+}
+
+/* --- EPREUVE 2 : MOOD SWING --- */
+.mood-input.angry {
+  border-color: var(--error-color);
+  color: var(--error-color);
+  background-color: #fef2f2;
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.mood-input.happy {
+  border-color: #10b981;
+  background-color: #ecfdf5;
+}
+
+.mood-indicator {
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* --- EPREUVE 3 : 3D ROTATION --- */
+.perspective-container {
+  perspective: 800px;
+  margin: 2rem 0;
+}
+
+.input-wrapper-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.input-3d {
+  backface-visibility: visible;
+  background: white;
+  transition: filter 0.3s;
+}
+
+/* Utility */
+.field-container {
+  margin-bottom: 2.5rem;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+/* Scanlines/Noise (Optionnel si tu veux garder le look tech) */
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.03);
+  z-index: 1;
+  animation: scan 3s infinite linear;
+  pointer-events: none;
+  display: block;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
