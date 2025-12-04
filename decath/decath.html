@@ -3,14 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <title>Vos Suggestions d'Exercices</title>
-    <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-        .exo-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-        .difficile { border-left: 5px solid orange; }
-        .expert { border-left: 5px solid red; }
-        .facile { border-left: 5px solid green; }
-        h1 span { color: #007bff; }
-    </style>
+    
+    <link rel="stylesheet" href="decath.css">
 </head>
 <body>
     <header>
@@ -42,34 +36,6 @@
         </div>
     </main>
 
-    <script>
-        const profilTexte = localStorage.getItem('profilUtilisateur');
-        
-        if (profilTexte) {
-            const profil = JSON.parse(profilTexte);
-            
-            // Afficher le nom
-            document.getElementById('nom-user').innerText = profil.prenom;
-            document.getElementById('niveau-user').innerText = profil.niveau;
-
-            // LOGIQUE DE FILTRAGE
-            const pompes = document.getElementById('pompes');
-            const burpees = document.getElementById('burpees');
-
-            if (profil.niveau === 'debutant') {
-                // Le débutant ne voit pas les exos durs
-                pompes.style.display = 'none';
-                burpees.style.display = 'none';
-            } else if (profil.niveau === 'confirme') {
-                // Le confirmé voit les pompes mais pas les burpees
-                burpees.style.display = 'none';
-            }
-            // L'expert voit tout, donc on ne cache rien
-        } else {
-            // Si quelqu'un arrive ici sans passer par le QCM
-            alert("Veuillez d'abord remplir le profil !");
-            window.location.href = 'decath/qcm.html';
-        }
-    </script>
+    <script src="decath.js"></script>
 </body>
 </html>
