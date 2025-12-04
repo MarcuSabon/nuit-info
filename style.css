@@ -1,0 +1,197 @@
+/* --- VARIABLES (Couleurs) --- */
+:root {
+    --couleur-primaire: #264653;
+    /* Bleu pétrole */
+    --couleur-stylé: #e76f51;
+    /* Terracotta */
+    --couleur-blanc: #ffffff;
+    --couleur-blanc-cassé: #f7f9fa;
+    /* Gris très clair */
+    --couleur-texte: #2b2d42;
+    --couleur-texte-claire: #6d6875;
+}
+
+/* --- BASE --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--couleur-texte);
+    background-color: var(--couleur-blanc);
+    line-height: 1.6;
+}
+
+h1,
+h2 {
+    margin-top: 0;
+    font-weight: 700;
+    color: var(--couleur-primaire);
+}
+
+p {
+    margin-bottom: 20px;
+    color: var(--couleur-texte-claire);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+/* --- NAVIGATION --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    /* Espace le contenu */
+    align-items: center;
+    padding: 20px 5%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--couleur-primaire);
+}
+
+.dot {
+    color: var(--couleur-stylé);
+    font-size: 2rem;
+    line-height: 0;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 5%;
+    min-height: 40vh;
+    /* Hauteur ajustée */
+    background-color: var(--couleur-blanc-cassé);
+    gap: 50px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+.hero-image {
+    flex: 1;
+}
+
+/* --- SECTIONS (Texte + Image) --- */
+.section-container {
+    padding: 100px 5%;
+}
+
+.bg-grey {
+    background-color: var(--couleur-blanc-cassé);
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 50% - 50% */
+    gap: 60px;
+    align-items: center;
+}
+
+/* Inverse l'ordre sur PC */
+.grid-layout.reverse .text-block {
+    order: 2;
+}
+
+.grid-layout.reverse .image-block {
+    order: 1;
+}
+
+.text-block h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.text-block p {
+    font-size: 1.1rem;
+}
+
+.clean-list {
+    list-style: none;
+    padding: 0;
+}
+
+.clean-list li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* --- gradient --- */
+.section-gradient {
+    /* Le dégradé : Du Blanc (0%) vers le Bleu Pétrole (100%) */
+    background: linear-gradient(to bottom, var(--couleur-blanc), var(--couleur-texte) 100%);
+    height: 2000px;
+    padding: 120px 5%;
+    text-align: center;
+}
+
+.section-black {
+    background: linear-gradient(var(--couleur-texte), #000000);
+    height: 2000px;
+    padding: 120px 5%;
+    text-align: center;
+}
+
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--couleur-primaire);
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+
+    .hero,
+    .grid-layout {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-image img {
+        height: 250px;
+    }
+
+    /* Image moins haute sur mobile */
+
+    .grid-layout.reverse .text-block {
+        order: 0;
+    }
+
+    .grid-layout.reverse .image-block {
+        order: 1;
+    }
+}

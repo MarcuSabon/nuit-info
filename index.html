@@ -4,15 +4,143 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Nuit de l'Info — Début de site</title>
-    <meta name="description" content="Nuit de l'Info — évènement étudiant de programmation et créativité" />
+    <title>Déconnexion — Retrouver l'essentiel</title>
+    <meta name="description" content="Site de sensibilisation à la sobriété numérique." />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Bienvenue à la Nuit de l'Info</h1>
-    <p>Ceci est le début de votre site pour l'évènement Nuit de l'Info.</p>
-    <script type="module" src="script.js"></script>
+
+    <nav class="navbar">
+        <div class="logo">Pause Numérique<span class="dot">.</span></div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Reprenez le contrôle de votre attention.</h1>
+            <p>La technologie doit être un outil, pas un maître. Découvrez comment la sobriété numérique peut améliorer
+                votre bien-être mental et préserver la planète.</p>
+        </div>
+        <div class="hero-image">
+            <img src="img/un-homme-debout-sur-une-falaise-avec-les-bras-tendus.jpg" alt="Illustration liberté">
+        </div>
+    </header>
+
+    <section id="presentation" class="section-container">
+        <div class="grid-layout">
+            <div class="text-block">
+                <h2>L'impact invisible du scroll infini</h2>
+                <p>
+                    Nous passons en moyenne <strong>6 heures par jour</strong> devant nos écrans. Cette hyper-connexion
+                    a un coût : fatigue mentale, troubles du sommeil, et une empreinte carbone numérique grandissante.
+                </p>
+                <p>
+                    L'addiction numérique n'est pas une fatalité. Comprendre ces mécanismes, c'est le premier pas pour
+                    s'en libérer.
+                </p>
+            </div>
+            <div class="image-block">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Smartphone sur table">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container bg-grey">
+        <div class="grid-layout reverse">
+            <div class="text-block">
+                <h2>La Sobriété Numérique : Une approche positive</h2>
+                <p>
+                    Il ne s'agit pas de tout couper, mais de mieux choisir. Privilégier la qualité de l'information à la
+                    quantité des notifications.
+                </p>
+                <ul class="clean-list">
+                    <li>✓ Réduire le stress informationnel</li>
+                    <li>✓ Allonger la durée de vie de vos appareils</li>
+                    <li>✓ Retrouver du temps pour le monde réel</li>
+                </ul>
+            </div>
+            <div class="image-block">
+                <img src="https://images.unsplash.com/photo-1445462657202-a0893228a1e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Livre et calme">
+            </div>
+        </div>
+    </section>
+    <section class="section-container">
+        <div class="grid-layout">
+            <div class="text-block">
+                <h2>Le poids réel du "Nuage"</h2>
+                <p>
+                    Le terme "Cloud" est trompeur. Il ne s'agit pas de vapeur d'eau, mais de milliers de serveurs
+                    climatisés tournant 24h/24.
+                </p>
+                <p>
+                    Si Internet était un pays, il serait le <strong>3ème plus gros consommateur d'électricité</strong>
+                    au monde. Chaque email gardé, chaque vidéo streamée en 4K a un impact carbone direct. Nettoyer ses
+                    données, c'est aussi nettoyer la planète.
+                </p>
+            </div>
+            <div class="image-block">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Planète terre et technologie">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container bg-grey">
+        <div class="grid-layout reverse">
+            <div class="text-block">
+                <h2>Reconnecter avec le réel</h2>
+                <p>
+                    La peur de manquer quelque chose (FOMO) nous pousse à vérifier notre téléphone toutes les 10
+                    minutes. Pourtant, les vrais moments se passent hors ligne.
+                </p>
+                <p>
+                    Poser son téléphone lors d'un repas ou d'une conversation, c'est offrir à l'autre le cadeau le plus
+                    précieux : <strong>votre attention pleine et entière</strong>.
+                </p>
+            </div>
+            <div class="image-block">
+                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Amis qui discutent sans téléphone">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <div class="grid-layout">
+            <div class="text-block">
+                <h2>3 gestes pour commencer aujourd'hui</h2>
+                <p>Pas besoin de tout jeter. Commencez petit pour des résultats durables :</p>
+                <ul class="clean-list">
+                    <li><strong>1. Le mode "Ne pas déranger" :</strong> Programmez-le automatiquement à partir de 21h
+                        pour préserver votre sommeil.</li>
+                    <li><strong>2. Le ménage de printemps :</strong> Désinstallez les applications que vous n'avez pas
+                        ouvertes depuis un mois.</li>
+                    <li><strong>3. La règle des yeux :</strong> Ne regardez jamais votre écran avant d'avoir dit bonjour
+                        aux gens qui vivent avec vous.</li>
+                </ul>
+            </div>
+            <div class="image-block">
+                <img src="img/professionnel-du-design-moderne-travaillant-sur-un-bureau-en-bois-a-l-interieur-genere-par-l-ia.jpg"
+                    alt="Bureau minimaliste zen">
+            </div>
+        </div>
+    </section>
+    <section class="section-gradient">
+
+    </section>
+
+    <section class="section-black">
+
+    </section>
+
+
 </body>
 
 </html>
