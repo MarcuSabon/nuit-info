@@ -7,6 +7,8 @@ const state = {
   rotationX: 0,
   stabilized: false
 };
+// Indique si l'utilisateur a déjà écrit dans le champ email
+state.emailTouched = false;
 
 // DOM Elements
 const steps = document.querySelectorAll('.step');
@@ -167,47 +169,51 @@ dInput.addEventListener('input', () => {
     try { btnStabilize.disabled = false; btnStabilize.innerText = 'Stabiliser'; } catch(e) {}
   }
 
+  // Marquer que l'utilisateur a touché le champ (pour ne pas flouter au chargement)
+  if (!state.emailTouched && dInput.value.length > 0) state.emailTouched = true;
+
   // Appliquer rotation progressive
   state.rotationY += 30;
   dWrapper.style.transform = `rotateY(${state.rotationY}deg) rotateX(${state.rotationX}deg)`;
 
+  // Ne pas appliquer de flou tant que l'utilisateur n'a pas écrit
+  if (!state.emailTouched) {
+    dInput.style.filter = 'none';
+    return;
+  }
+
   // Combiner un flou de base avec un flou dépendant de la longueur saisie
-  const baseBlur = 2; // px par défaut (renforce le flou demandé)
+  const baseBlur = 2; // px minimal une fois que l'utilisateur a écrit
   const lengthBlur = dInput.value.length > 3 ? Math.min(dInput.value.length / 4, 3) : 0;
   const totalBlur = Math.max(baseBlur, lengthBlur);
   dInput.style.filter = `blur(${totalBlur}px)`;
 });
 
-// Rendre le bouton beaucoup plus fuyant : bouge dès l'entrée de la souris
+// Rendre le bouton fuyant mais cliquable : translations plus petites
 btnStabilize.addEventListener('mouseenter', (e) => {
   if (state.stabilized) return;
-  // Déplacement large et immédiat
-  const x = (Math.random() - 0.5) * 260;
-  const y = (Math.random() - 0.5) * 120;
+  // Déplacement modéré et immédiat
+  const x = (Math.random() - 0.5) * 80; // réduit
+  const y = (Math.random() - 0.5) * 40; // réduit
   btnStabilize.style.transform = `translate(${x}px, ${y}px)`;
-  // légère rotation pour l'effet
-  btnStabilize.style.transition = 'transform 150ms ease-out';
+  btnStabilize.style.transition = 'transform 120ms ease-out';
 });
 
-// Sur tentative de clic (mousedown) : sauter encore plus loin et annuler l'action
+// Sur tentative de clic (mousedown) : léger saut mais laisser le clic se produire
 btnStabilize.addEventListener('mousedown', (e) => {
   if (state.stabilized) return;
-  e.preventDefault();
-  // Saut encore plus grand
-  const x = (Math.random() - 0.5) * 420;
-  const y = (Math.random() - 0.5) * 220;
-  btnStabilize.style.transform = `translate(${x}px, ${y}px) rotate(${(Math.random()-0.5)*25}deg)`;
-  btnStabilize.style.transition = 'transform 120ms cubic-bezier(.2,.9,.2,1)';
-  // petit délai avant permettre une nouvelle tentative (empêche spamming)
-  btnStabilize.disabled = true;
-  setTimeout(() => { if (!state.stabilized) btnStabilize.disabled = false; }, 350);
+  // Petit nudge au moment du clic pour l'effet, sans empêcher l'action
+  const x = (Math.random() - 0.5) * 120;
+  const y = (Math.random() - 0.5) * 60;
+  btnStabilize.style.transform = `translate(${x}px, ${y}px) rotate(${(Math.random()-0.5)*10}deg)`;
+  btnStabilize.style.transition = 'transform 100ms cubic-bezier(.2,.9,.2,1)';
 });
 
-// Aussi sur focus (clavier) : faire la même chose
+// Aussi sur focus (clavier) : déplacement léger pour l'accessibilité
 btnStabilize.addEventListener('focus', () => {
   if (state.stabilized) return;
-  const x = (Math.random() - 0.5) * 220;
-  const y = (Math.random() - 0.5) * 100;
+  const x = (Math.random() - 0.5) * 60;
+  const y = (Math.random() - 0.5) * 30;
   btnStabilize.style.transform = `translate(${x}px, ${y}px)`;
 });
 
