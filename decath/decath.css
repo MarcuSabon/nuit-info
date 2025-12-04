@@ -1,26 +1,120 @@
+/* decath.css */
 body { 
-    font-family: sans-serif; 
-    max-width: 800px; 
+    font-family: 'Segoe UI', Roboto, sans-serif; 
+    max-width: 900px; 
     margin: 0 auto; 
     padding: 20px; 
+    background-color: #f4f4f9;
+    color: #333;
 }
 
+header {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+header h1 { margin: 0 0 10px 0; font-size: 1.8rem; }
+header p { margin-bottom: 20px; color: #666; }
+
+header a {
+    text-decoration: none;
+    color: white;
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+header a:hover { background-color: #000; }
+
+/* --- CARTE EXERCICE --- */
 .exo-card { 
-    border: 1px solid #ddd; 
-    padding: 15px; 
-    margin-bottom: 15px; 
-    border-radius: 8px; 
     background-color: #fff;
-    transition: transform 0.2s;
+    border-radius: 15px;
+    padding: 30px; 
+    margin-bottom: 30px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
 }
 
-.exo-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.exo-card h2 { 
+    margin-top: 0; 
+    margin-bottom: 5px;
+    color: #222; 
+    font-size: 1.5rem;
 }
 
-.difficile { border-left: 5px solid orange; }
-.expert { border-left: 5px solid red; }
-.facile { border-left: 5px solid green; }
+/* Style des tags et texte détaillé */
+.tag {
+    display: inline-block;
+    background-color: #eef2f5;
+    color: #555;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
 
-h1 span { color: #007bff; }
+.details p { margin-bottom: 10px; line-height: 1.6; }
+.details ul, .details ol { 
+    margin-bottom: 15px; 
+    padding-left: 20px; 
+    color: #444;
+}
+.details li { margin-bottom: 5px; }
+
+/* Couleurs difficulté */
+.facile { border-left: 8px solid #2ecc71; }
+.difficile { border-left: 8px solid #f39c12; }
+.expert { border-left: 8px solid #e74c3c; }
+
+/* --- VIDÉO SANS SON --- */
+.video-container {
+    margin-top: 25px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+}
+
+video {
+    width: 100%;
+    display: block;
+    max-height: 500px;
+    cursor: pointer; /* Curseur main */
+}
+
+.play-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.playing .play-hint { opacity: 0; }
+
+/* Style spécifique pour le bouton Decathlon */
+header a.btn-decath {
+    background-color: #0082C3; /* Le Bleu Officiel Decathlon */
+    margin-left: 10px;         /* Un peu d'espace avec l'autre bouton */
+    border: 1px solid #0082C3;
+}
+
+header a.btn-decath:hover {
+    background-color: #006699; /* Bleu un peu plus sombre au survol */
+    border-color: #006699;
+    transform: translateY(-2px); /* Petit effet de rebond */
+}

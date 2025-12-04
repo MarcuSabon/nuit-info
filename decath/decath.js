@@ -1,36 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Récupérer le profil depuis le navigateur
+    
+    // 1. GESTION DU PROFIL (Rien ne change ici)
     const profilTexte = localStorage.getItem('profilUtilisateur');
     
-    if (profilTexte) {
-        const profil = JSON.parse(profilTexte);
-        
-        // Afficher le nom et le niveau
-        const nomElement = document.getElementById('nom-user');
-        const niveauElement = document.getElementById('niveau-user');
-
-        if(nomElement) nomElement.innerText = profil.prenom;
-        if(niveauElement) niveauElement.innerText = profil.niveau;
-
-        // LOGIQUE DE FILTRAGE
-        const pompes = document.getElementById('pompes');
-        const burpees = document.getElementById('burpees');
-
-        // On vérifie que les éléments existent avant de les masquer pour éviter les erreurs
-        if (pompes && burpees) {
-            if (profil.niveau === 'debutant') {
-                // Le débutant ne voit pas les exos durs
-                pompes.style.display = 'none';
-                burpees.style.display = 'none';
-            } else if (profil.niveau === 'confirme') {
-                // Le confirmé voit les pompes mais pas les burpees
-                burpees.style.display = 'none';
-            }
-            // L'expert voit tout
-        }
-    } else {
-        // Si quelqu'un arrive ici sans passer par le QCM
-        alert("Veuillez d'abord remplir le profil !");
-        window.location.href = 'qcm.html';
+    if (!profilTexte) {
+        alert("Profil introuvable, redirection...");
+        window.location.href = '../qcm/qcm.html'; 
+        return;
     }
+
+    const profil = JSON.parse(profilTexte);
+    const nomEl = document.getElementById('nom-user');
+    const nivEl = document.getElementById('niveau-user');
+    if(nomEl) nomEl.innerText = profil.prenom;
+    if(nivEl) nivEl.innerText = profil.niveau;
+
+    // 2. FILTRAGE (Rien ne change ici)
+    const exosDifficiles = document.querySelectorAll('.difficile');
+    const exosExperts = document.querySelectorAll('.expert');
+
+    if (profil.niveau === 'debutant') {
+        exosDifficiles.forEach(el => el.style.display = 'none');
+        exosExperts.forEach(el => el.style.display = 'none');
+    } else if (profil.niveau === 'confirme') {
+        exosExperts.forEach(el => el.style.display = 'none');
+    }
+
+    // 3. NOUVEAU : GESTION DES VIDÉOS SANS SON
+    const videos = document.querySelectorAll('video');
+
+    videos.forEach(video => {
+        // Double sécurité pour le son
+        video.muted = true;
+        video.volume = 0;
+
+        // Interaction au clic
+        video.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                video.parentElement.classList.add('playing'); // Pour cacher le texte d'aide
+            } else {
+                video.pause();
+                video.parentElement.classList.remove('playing');
+            }
+        });
+
+        // Empêche toute tentative de remettre le son via le menu contextuel
+        video.addEventListener('volumechange', () => {
+            video.muted = true;
+            video.volume = 0;
+        });
+    });
 });

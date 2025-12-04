@@ -1,0 +1,106 @@
+/* shop.css */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+header h1 { margin: 0; color: #333; }
+header p { color: #666; margin-top: 5px; }
+
+.btn-retour {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+.btn-retour:hover { background-color: #eee; }
+
+/* --- GRILLE PRODUITS --- */
+#shop-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.product-image {
+    width: 100%;       /* Prend toute la largeur de la carte */
+    height: 200px;     /* Force une hauteur fixe */
+    object-fit: cover; /* Coupe l'image proprement pour remplir la zone sans déformer */
+    display: block;
+}
+
+.product-info {
+    padding: 20px;
+    flex-grow: 1; /* Pousse le bouton vers le bas */
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.product-desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.btn-achat {
+    display: block;
+    text-align: center;
+    background-color: #0082C3; /* Bleu Decathlon */
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-achat:hover {
+    background-color: #005f8f;
+}
