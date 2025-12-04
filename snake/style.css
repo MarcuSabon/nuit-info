@@ -1,88 +1,72 @@
-/* 1. Styles de Base */
 body {
+    margin: 0;
+    overflow: hidden; /* Empêche les barres de défilement */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    background-color: #1a1a2e; /* Fond sombre rétro */
-    font-family: 'Inter', sans-serif;
+    background-color: #282c34;
+    font-family: Arial, sans-serif;
     color: white;
 }
 
-/* 2. Conteneur du Jeu (relativement positionné) */
-.game-container {
-    position: relative; /* Crucial pour positionner l'overlay par rapport à lui */
-    text-align: center;
-    padding: 20px;
-    background-color: #2b2b45;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+#game-container {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    max-width: 800px;
+    max-height: 800px;
+    border: 5px solid #61afef;
+    box-shadow: 0 0 30px rgba(97, 175, 239, 0.5);
 }
 
-/* 3. Styles du Canvas */
-#snakeCanvas {
-    border: 5px solid #66ff66; /* Bordure verte brillante */
-    background-color: #000000;
-    touch-action: none;
-    user-select: none;
-    box-shadow: 0 0 10px rgba(102, 255, 102, 0.6);
-    border-radius: 8px;
+canvas {
+    display: block; /* Important pour Three.js */
+    width: 100%;
+    height: 100%;
 }
 
-/* 4. Barre d'Infos */
-.info-bar {
-    width: 400px; 
+#ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #dddddd;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s;
+    z-index: 10;
+}
+
+#ui.hidden {
+    opacity: 0;
+    pointer-events: none; /* Permet d'interagir avec le canvas en dessous */
+}
+
+h1 {
+    color: #98c379; /* Vert pour le serpent */
+    margin-bottom: 20px;
 }
 
 #score {
-    color: #66ff66; 
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
-/* 5. Styles de l'Overlay (Message Démarrer/Fin de Jeu) */
-.game-overlay {
-    /* Superposition sur le canvas */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    /* Dimensions et style */
-    width: 300px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.9);
-    border: 3px solid #ff6347;
-    border-radius: 10px;
-    z-index: 10;
-    
-    /* Centre le contenu texte */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Style du bouton Démarrer/Rejouer */
 #startButton {
     padding: 10px 20px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    background-color: #ff6347; /* Rouge Tomate */
-    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #e5c07b;
+    color: #282c34;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
-    margin-top: 15px;
+    transition: background-color 0.3s;
 }
 
 #startButton:hover {
-    background-color: #e55337;
-    transform: scale(1.05);
+    background-color: #d19a66;
 }

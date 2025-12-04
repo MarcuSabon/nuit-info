@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake - Le Jeu</title>
-    <link rel="stylesheet" href="style.css"> 
+    <title>Snake 3D</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
-        
-        <div class="info-bar">
-            Score: <span id="score">0</span>
+    <div id="game-container">
+        <div id="ui">
+            <h1>Snake 3D</h1>
+            <p>Utilisez les flèches du clavier pour vous déplacer.</p>
+            <div id="score">Score: 0</div>
+            <button id="startButton">Jouer</button>
         </div>
-        
-        <canvas id="snakeCanvas" width="400" height="400"></canvas>
-        
-        <div id="messageOverlay" class="game-overlay">
-            <h2 id="gameOverTitle">Appuyez pour Démarrer !</h2>
-            <p id="finalScore"></p>
-            <button id="startButton">Démarrer / Rejouer</button>
-        </div>
-        
     </div>
 
-    <script src="snake.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="snake.js" defer></script>
 </body>
 </html>
