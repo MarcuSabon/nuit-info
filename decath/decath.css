@@ -1,128 +1,107 @@
-/* decath.css - Design Dashboard */
-:root {
-    --primary-color: #4361ee;
-    --success-color: #2ec4b6; /* Vert turquoise */
-    --warning-color: #ff9f1c; /* Orange vif */
-    --danger-color: #e71d36;  /* Rouge intense */
-    --bg-color: #f8f9fa;
-    --text-color: #2b2d42;
+/* decath.css */
+body { 
+    font-family: 'Segoe UI', Roboto, sans-serif; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-body {
-    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 20px;
-    line-height: 1.6;
-}
-
-/* En-tête */
 header {
     background: white;
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     margin-bottom: 30px;
+    text-align: center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-header h1 span {
-    color: var(--primary-color);
-}
-
-header p {
-    margin: 5px 0 0;
-    color: #666;
-    width: 100%;
-}
+header h1 { margin: 0 0 10px 0; font-size: 1.8rem; }
+header p { margin-bottom: 20px; color: #666; }
 
 header a {
     text-decoration: none;
     color: white;
-    background-color: #2b2d42;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
     transition: background 0.3s;
 }
+header a:hover { background-color: #000; }
 
-header a:hover {
-    background-color: #000;
+/* --- CARTE EXERCICE --- */
+.exo-card { 
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px; 
+    margin-bottom: 30px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
 }
 
-hr {
-    border: 0;
-    height: 1px;
-    background: #e1e1e1;
-    margin: 20px 0;
+.exo-card h2 { 
+    margin-top: 0; 
+    margin-bottom: 5px;
+    color: #222; 
+    font-size: 1.5rem;
 }
 
-/* Grille des exercices */
-#liste-exercices {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive automatique */
-    gap: 20px;
-}
-
-/* Carte Exercice */
-.exo-card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    border-left: 6px solid #ccc; /* Bordure par défaut */
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.exo-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.exo-card h2 {
+/* Style des tags et texte détaillé */
+.tag {
+    display: inline-block;
+    background-color: #eef2f5;
+    color: #555;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
     margin-top: 0;
-    font-size: 1.3rem;
-    color: #333;
+    margin-bottom: 20px;
 }
 
-/* Code couleur selon difficulté */
-.facile {
-    border-left-color: var(--success-color);
+.details p { margin-bottom: 10px; line-height: 1.6; }
+.details ul, .details ol { 
+    margin-bottom: 15px; 
+    padding-left: 20px; 
+    color: #444;
 }
-.facile h2::after {
-    content: " • Facile";
-    font-size: 0.8rem;
-    color: var(--success-color);
-    font-weight: normal;
+.details li { margin-bottom: 5px; }
+
+/* Couleurs difficulté */
+.facile { border-left: 8px solid #2ecc71; }
+.difficile { border-left: 8px solid #f39c12; }
+.expert { border-left: 8px solid #e74c3c; }
+
+/* --- VIDÉO SANS SON --- */
+.video-container {
+    margin-top: 25px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    position: relative;
 }
 
-.difficile {
-    border-left-color: var(--warning-color);
-}
-.difficile h2::after {
-    content: " • Difficile";
-    font-size: 0.8rem;
-    color: var(--warning-color);
-    font-weight: normal;
+video {
+    width: 100%;
+    display: block;
+    max-height: 500px;
+    cursor: pointer; /* Curseur main */
 }
 
-.expert {
-    border-left-color: var(--danger-color);
-}
-.expert h2::after {
-    content: " • Expert";
+.play-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
     font-size: 0.8rem;
-    color: var(--danger-color);
-    font-weight: normal;
+    pointer-events: none;
+    transition: opacity 0.3s;
 }
+
+.playing .play-hint { opacity: 0; }

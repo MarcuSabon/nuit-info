@@ -3,37 +3,189 @@
 <head>
     <meta charset="utf-8" />
     <title>Vos Suggestions d'Exercices</title>
-    
     <link rel="stylesheet" href="decath.css">
 </head>
 <body>
     <header>
         <h1>Bonjour <span id="nom-user">Sportif</span> !</h1>
         <p>Voici votre programme personnalisé pour le niveau : <strong id="niveau-user">...</strong></p>
-        <a href="../index.html">Retour</a>
+        <a href="../index.html">Recommencer</a>
     </header>
     <hr>
 
     <main id="liste-exercices">
+        
         <div class="exo-card facile">
-            <h2>1. Jumping Jacks (Échauffement)</h2>
-            <p>Sauter en écartant les bras et les jambes.</p>
+            <h2>1. Jumping Jacks</h2>
+            <p class="tag">Cardio & Échauffement</p>
+            
+            <div class="details">
+                <p><strong>💪 Muscles ciblés :</strong> Mollets, Cœur (Cardio), Épaules.</p>
+                <p><strong>⚙️ Exécution :</strong></p>
+                <ul>
+                    <li>Démarrez debout, pieds joints et bras le long du corps.</li>
+                    <li>Sautez en écartant les jambes tout en levant les bras au-dessus de la tête.</li>
+                    <li>Revenez en position initiale en sautant à nouveau.</li>
+                    <li>Gardez un rythme régulier et atterrissez sur la pointe des pieds.</li>
+                </ul>
+            </div>
+
+            <div class="video-container">
+                <video loop muted playsinline src="../vod/jumpingjack.mp4"></video>
+                <div class="play-hint">Cliquer pour lecture/pause</div>
+            </div>
         </div>
 
         <div class="exo-card facile">
-            <h2>2. Les Squats</h2>
-            <p>Fléchissez les jambes comme pour vous asseoir, gardez le dos droit.</p>
+            <h2>2. La Planche (Gainage)</h2>
+            <p class="tag">Renforcement Abdominal</p>
+            
+            <div class="details">
+                <p><strong>💪 Muscles ciblés :</strong> Transverse (abdos profonds), Dos, Épaules.</p>
+                <p><strong>⚙️ Exécution :</strong></p>
+                <ul>
+                    <li>Mettez-vous en appui sur les avant-bras et les orteils.</li>
+                    <li>Alignez tête, dos et fesses (comme une planche).</li>
+                    <li>Contractez fort les fesses et les abdos.</li>
+                    <li>Regardez le sol pour ne pas casser la nuque.</li>
+                </ul>
+                <p><strong>🌬️ Respiration :</strong> Respirez calmement, ne bloquez pas l'air !</p>
+            </div>
+
+            <div class="video-container">
+                <video loop muted playsinline src="../vod/gainage.mp4"></video>
+                <div class="play-hint">Cliquer pour lecture/pause</div>
+            </div>
         </div>
 
-        <div class="exo-card difficile" id="pompes">
-            <h2>3. Les Pompes (Push-ups)</h2>
-            <p>Corps gainé, descendez le buste au sol et remontez.</p>
+        <div class="exo-card facile">
+            <h2>3. Abdos (Crunchs)</h2>
+            <p class="tag">Sangle Abdominale</p>
+            
+            <div class="details">
+                <p><strong>💪 Muscles ciblés :</strong> Grand droit (les "tablettes").</p>
+                <p><strong>⚙️ Exécution :</strong></p>
+                <ul>
+                    <li>Allongé sur le dos, jambes fléchies, pieds au sol.</li>
+                    <li>Mains derrière les oreilles (sans tirer sur la nuque).</li>
+                    <li>Enroulez le buste vers l'avant en contractant les abdos.</li>
+                    <li>Décollez seulement les omoplates.</li>
+                </ul>
+                <p><strong>⚠️ Erreur :</strong> Ne tirez surtout pas sur la tête avec les mains !</p>
+            </div>
+
+            <div class="video-container">
+                <video loop muted playsinline src="../vod/abdos.mp4"></video>
+                <div class="play-hint">Cliquer pour lecture/pause</div>
+            </div>
         </div>
 
-        <div class="exo-card expert" id="burpees">
-            <h2>4. Les Burpees (Intense)</h2>
-            <p>Enchaînement squat, planche, pompe, saut. Cardio maximum !</p>
+        <div class="exo-card facile">
+            <h2>4. Fentes avants</h2>
+            <p class="tag">Jambes & Fessiers</p>
+            
+            <div class="details">
+                <p><strong>💪 Muscles ciblés :</strong> Quadriceps, Ischio-jambiers, Fessiers.</p>
+                <p><strong>⚙️ Exécution :</strong></p>
+                <ul>
+                    <li>Debout, faites un grand pas vers l'avant.</li>
+                    <li>Fléchissez les deux jambes jusqu'à avoir deux angles de 90°.</li>
+                    <li>Le genou arrière frôle le sol sans le toucher.</li>
+                    <li>Poussez sur le talon avant pour remonter.</li>
+                </ul>
+                <p><strong>⚠️ Attention :</strong> Gardez le dos bien droit.</p>
+            </div>
+
+            <div class="video-container">
+                <video loop muted playsinline src="../vod/fentes copy.mp4"></video>
+                <div class="play-hint">Cliquer pour lecture/pause</div>
+            </div>
         </div>
+
+        <div class="exo-card difficile">
+            <h2>5. Les Pompes</h2>
+            <p class="tag">Pectoraux & Bras</p>
+            
+            <div class="details">
+                <p><strong>💪 Muscles ciblés :</strong> Pectoraux, Triceps, Deltoïdes.</p>
+                <p><strong>⚙️ Exécution :</strong></p>
+                <ul>
+                    <li>Mains au sol, écartement légèrement supérieur aux épaules.</li>
+                    <li>Corps gainé, descendez la poitrine jusqu'à frôler le sol.</li>
+                    <li>Les coudes forment une flèche (45°), pas un "T".</li>
+                    <li>Repoussez le sol dynamiquement.</li>
+                </ul>
+            </div>
+
+            <div class="video-container">
+                <video loop muted playsinline src="../vod/pompes.mp4"></video>
+                <div class="play-hint">Cliquer pour lecture/pause</div>
+            </div>
+        </div>
+
+        <div class="exo-card difficile">
+            <h2>6. Mountain Climbers</h2>
+            <p class="tag">Cardio & Gainage Dynamique</p>
+            
+            <div class="details">
+                <p><strong>💪 Muscles ciblés :</strong> Cœur, Abdos, Épaules.</p>
+                <p><strong>⚙️ Exécution :</strong></p>
+                <ul>
+                    <li>Position de pompe (bras tendus, corps droit).</li>
+                    <li>Ramenez un genou vers la poitrine, puis l'autre.</li>
+                    <li>Alternez rapidement comme si vous grimpiez une montagne.</li>
+                    <li>Gardez les fesses basses, le dos ne doit pas bouger.</li>
+                </ul>
+            </div>
+
+            <div class="video-container">
+                <video loop muted playsinline src="../vod/mountainclimber.mp4"></video>
+                <div class="play-hint">Cliquer pour lecture/pause</div>
+            </div>
+        </div>
+
+        <div class="exo-card difficile">
+            <h2>7. Dips (Triceps)</h2>
+            <p class="tag">Bras & Épaules</p>
+            
+            <div class="details">
+                <p><strong>💪 Muscles ciblés :</strong> Triceps (arrière du bras).</p>
+                <p><strong>⚙️ Exécution :</strong></p>
+                <ul>
+                    <li>Mains sur le bord d'une chaise, dos au vide.</li>
+                    <li>Descendez les fesses vers le sol en pliant les bras.</li>
+                    <li>Remontez à la force des bras sans utiliser les jambes.</li>
+                </ul>
+                <p><strong>⚠️ Attention :</strong> Restez très proche de la chaise.</p>
+            </div>
+
+            <div class="video-container">
+                <video loop muted playsinline src="../vod/deeps.mp4"></video>
+                <div class="play-hint">Cliquer pour lecture/pause</div>
+            </div>
+        </div>
+
+        <div class="exo-card expert">
+            <h2>8. Les Burpees</h2>
+            <p class="tag">Explosivité Totale</p>
+            
+            <div class="details">
+                <p><strong>💪 Muscles ciblés :</strong> Tout le corps !</p>
+                <p><strong>⚙️ Exécution :</strong></p>
+                <ol>
+                    <li>Départ debout, fléchissez les jambes (Squat).</li>
+                    <li>Mains au sol, jetez les pieds en arrière (Planche).</li>
+                    <li>Faites une pompe complète (poitrine au sol).</li>
+                    <li>Ramenez les pieds (Grenouille) et sautez haut !</li>
+                </ol>
+            </div>
+
+            <div class="video-container">
+                <video loop muted playsinline src="../vod/burpees.mp4"></video>
+                <div class="play-hint">Cliquer pour lecture/pause</div>
+            </div>
+        </div>
+
     </main>
 
     <script src="decath.js"></script>
