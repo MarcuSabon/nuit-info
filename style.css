@@ -281,14 +281,15 @@ footer {
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;
-
 }
 
 .popup-right {
     right: 30px;
     border-left: 5px solid #10b981;
     /* Vert */
+
 }
+
 
 /* --- Spécificités Gauche --- */
 .popup-left {
