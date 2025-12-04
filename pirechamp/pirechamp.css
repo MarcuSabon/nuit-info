@@ -1,7 +1,7 @@
 :root {
   --bg-color: #f3f4f6;
   --text-color: #1f2937;
-  --accent-color: #2563eb; /* Clinical Blue */
+  --accent-color: #2563eb; 
   --accent-hover: #1d4ed8;
   --error-color: #ef4444;
   --warn-color: #f59e0b;
@@ -32,11 +32,7 @@ body {
   line-height: 1.5;
 }
 
-/* Disable Noise & Scanlines for clean look */
-.noise, .scan-line {
-  display: none;
-}
-
+/* Container Principal */
 .container {
   width: 90%;
   max-width: 640px;
@@ -46,8 +42,10 @@ body {
   padding: 3rem;
   position: relative;
   box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+  z-index: 10;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -73,6 +71,7 @@ header {
   font-size: 0.75rem;
 }
 
+/* Typo */
 h1 {
   font-size: 1.875rem;
   font-weight: 800;
@@ -95,8 +94,15 @@ p {
   color: #4b5563;
 }
 
+.instruction {
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+/* Messages Box */
 .message-box {
-  background: #f0f9ff;
+  background: #eff6ff;
   border-left: 4px solid var(--accent-color);
   padding: 1.5rem;
   border-radius: 0 8px 8px 0;
@@ -107,6 +113,7 @@ p {
   display: block;
   margin-top: 0.5rem;
   color: #6b7280;
+  font-style: italic;
 }
 
 .message-box.success {
@@ -115,7 +122,7 @@ p {
   color: #065f46;
 }
 
-/* Inputs */
+/* Inputs Standard */
 input {
   width: 100%;
   background: #ffffff;
@@ -126,7 +133,7 @@ input {
   font-family: var(--font-display);
   font-size: 1rem;
   outline: none;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input:focus {
@@ -177,6 +184,10 @@ input:focus {
   padding: 1.25rem;
   box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
 }
+.btn.special:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.5);
+}
 
 .btn:disabled {
   opacity: 0.5;
@@ -222,8 +233,8 @@ input:focus {
 
 /* --- EPREUVE 1 : QUANTIQUE --- */
 .quantum-input {
-  position: relative;
-  transition: transform 0.1s;
+  /* Transition de mouvement fluide */
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .quantum-input.jitter {
@@ -248,7 +259,8 @@ input:focus {
   background: #f3f4f6;
   padding: 0.5rem;
   border-radius: 6px;
-  display: inline-block;
+  display: block;
+  text-align: center;
 }
 
 /* --- EPREUVE 2 : MOOD SWING --- */
@@ -294,34 +306,7 @@ input:focus {
 .input-3d {
   backface-visibility: visible;
   background: white;
-}
-
-/* --- SNAKE GAME --- */
-#snake-container.hidden {
-  display: none;
-}
-
-#snake-container {
-  margin-top: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #f8fafc;
-  padding: 1.5rem;
-  border-radius: var(--radius);
-}
-
-canvas {
-  border: 4px solid #e2e8f0;
-  background: white;
-  border-radius: 4px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.snake-controls {
-  margin-top: 1rem;
-  font-size: 0.875rem;
-  color: #64748b;
+  transition: filter 0.3s;
 }
 
 /* Utility */
@@ -334,4 +319,23 @@ canvas {
   gap: 1rem;
   justify-content: flex-end;
   margin-top: 2rem;
+}
+
+/* Scanlines/Noise (Optionnel si tu veux garder le look tech) */
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.03);
+  z-index: 1;
+  animation: scan 3s infinite linear;
+  pointer-events: none;
+  display: block;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
 }
