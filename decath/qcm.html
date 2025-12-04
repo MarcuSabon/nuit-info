@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Mon Profil Sportif</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .question { margin-bottom: 20px; padding: 10px; background: #f9f9f9; border-radius: 8px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        button { background-color: #28a745; color: white; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; border-radius: 5px;}
+    </style>
+</head>
+<body>
+    <h1>Profil Sportif</h1>
+    
+    <form id="monFormulaire">
+        <div class="question">
+            <label for="prenom">Votre Prénom :</label>
+            <input type="text" id="prenom" required placeholder="Ex: Alex">
+        </div>
+
+        <div class="question">
+            <label for="niveau">Votre niveau actuel :</label>
+            <select id="niveau" required>
+                <option value="debutant">Débutant (Je commence)</option>
+                <option value="confirme">Confirmé (Je m'entraîne déjà)</option>
+                <option value="expert">Expert (Je suis une machine)</option>
+            </select>
+        </div>
+
+        <button type="submit">Valider et voir mes exercices</button>
+    </form>
+
+    <script>
+        // Le script est directement ici pour éviter les problèmes de fichiers liés
+        document.getElementById('monFormulaire').addEventListener('submit', function(e) {
+            e.preventDefault(); // On empêche la page de se recharger
+
+            // 1. On récupère les infos
+            const prenom = document.getElementById('prenom').value;
+            const niveau = document.getElementById('niveau').value;
+
+            // 2. On sauvegarde dans "l'enveloppe" LocalStorage
+            const profil = {
+                prenom: prenom,
+                niveau: niveau
+            };
+            localStorage.setItem('profilUtilisateur', JSON.stringify(profil));
+
+            // 3. On change de page vers les exercices
+            window.location.href = 'decath.html';
+        });
+    </script>
+</body>
+</html>
