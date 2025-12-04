@@ -19,6 +19,7 @@ let dy;
 let score;
 let gameInterval;
 let vitesse = 100; // Vitesse en millisecondes
+let inputEnregistre = false; // NOUVEAU: Verrouillage d'entrée
 
 // Initialiser l'état du jeu (mais ne pas le démarrer)
 initialiserJeu();
@@ -42,7 +43,7 @@ function initialiserJeu() {
     score = 0;
     scoreElement.textContent = score;
     
-    // Cache l'overlay au démarrage
+    // Affichage de l'overlay de départ
     messageOverlay.style.display = 'flex';
     gameOverTitle.textContent = "Appuyez pour Démarrer !";
     finalScoreElement.textContent = "Utilisez les flèches directionnelles (ou ZQSD).";
@@ -57,6 +58,11 @@ function initialiserJeu() {
  * Lance le jeu après le clic sur le bouton.
  */
 function demarrerJeu() {
+    // Si le jeu est déjà en cours, on annule l'intervalle précédent
+    if (gameInterval) {
+        clearInterval(gameInterval);
+    }
+    
     // Réinitialise l'état avant de commencer
     initialiserJeu(); 
     
@@ -65,7 +71,8 @@ function demarrerJeu() {
     
     // Génère la nourriture et démarre la boucle
     genererNourriture();
-    gameInterval = setInterval(jeuPrincipal, vitesse);
+    // Vitesse du jeu ajustée ici (100ms = 10 mouvements/seconde)
+    gameInterval = setInterval(jeuPrincipal, vitesse); 
 }
 
 /**
@@ -73,6 +80,7 @@ function demarrerJeu() {
  */
 function stopperJeu() {
     clearInterval(gameInterval);
+    gameInterval = null; // Réinitialiser l'intervalle pour éviter des bugs
     
     // Affiche le message de fin de jeu
     gameOverTitle.textContent = "PARTIE TERMINÉE !";
@@ -86,6 +94,9 @@ function stopperJeu() {
 // ===================================
 
 function jeuPrincipal() {
+    // RÉSOUD LE BUG DE DOUBLE TOURNE : permet une nouvelle entrée au prochain tick
+    inputEnregistre = false; 
+    
     // 1. Vérifier la fin du jeu
     if (finDuJeu()) {
         stopperJeu();
@@ -211,6 +222,12 @@ startButton.addEventListener('click', demarrerJeu);
 document.addEventListener('keydown', changerDirection);
 
 function changerDirection(event) {
+    // NOUVEAU: Si le jeu n'a pas démarré, on ignore l'entrée
+    if (!gameInterval) return;
+    
+    // Si une entrée a déjà été traitée, on l'ignore
+    if (inputEnregistre) return;
+    
     // Touches utilisées : Flèches et ZQSD (pour les claviers AZERTY)
     const touche = event.key;
     const allerGauche = dx === -tailleCase;
@@ -218,6 +235,8 @@ function changerDirection(event) {
     const allerHaut = dy === -tailleCase;
     const allerBas = dy === tailleCase;
     
+    let nouvelleDirection = false; // Flag pour savoir si la direction a été changée
+
     // Empêche le défilement de la page avec les flèches
     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'z', 'q', 's', 'd'].includes(touche)) {
         event.preventDefault();
@@ -226,14 +245,23 @@ function changerDirection(event) {
     // Flèche Gauche ou 'q'
     if ((touche === 'ArrowLeft' || touche === 'q') && !allerDroite) {
         dx = -tailleCase; dy = 0;
+        nouvelleDirection = true;
     // Flèche Droite ou 'd'
     } else if ((touche === 'ArrowRight' || touche === 'd') && !allerGauche) {
         dx = tailleCase; dy = 0;
+        nouvelleDirection = true;
     // Flèche Haut ou 'z'
     } else if ((touche === 'ArrowUp' || touche === 'z') && !allerBas) {
         dx = 0; dy = -tailleCase;
+        nouvelleDirection = true;
     // Flèche Bas ou 's'
     } else if ((touche === 'ArrowDown' || touche === 's') && !allerHaut) {
         dx = 0; dy = tailleCase;
+        nouvelleDirection = true;
+    }
+    
+    // Si une direction valide a été définie, on active le verrouillage
+    if (nouvelleDirection) {
+        inputEnregistre = true;
     }
 }
