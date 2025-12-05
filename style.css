@@ -11,6 +11,7 @@
     --couleur-texte-claire: #6d6875;
 }
 
+
 /* --- BASE --- */
 body {
     margin: 0;
@@ -140,6 +141,7 @@ img {
     font-weight: 500;
 }
 
+
 /* --- gradient --- */
 .section-gradient {
     /* Le dégradé : Du Blanc (0%) vers le Bleu Pétrole (100%) */
@@ -156,6 +158,49 @@ img {
     text-align: center;
 }
 
+.full-black {
+    background: #000000;
+    height: 6000px;
+    padding: 120px 5%;
+    text-align: center;
+}
+
+.tungtung {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.brrbbrrr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+.hehe {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 60%;
+    margin-right: 0;
+    margin-left: auto;
+    align-self: flex-start;
+}
+
+#closePopup1Btn {
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    display: flex;
+    margin-right: 0;
+    margin-left: auto;
+    align-self: flex-start;
+}
 
 /* --- FOOTER --- */
 footer {
@@ -201,19 +246,36 @@ footer {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 300px;
+    width: 30%;
     background-color: white;
-    border-left: 5px solid #10b981; /* Vert NIRD */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-left: 5px solid #10b981;
+    /* Vert NIRD */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     font-family: sans-serif;
     z-index: 1000;
-    
+
     /* État initial : Caché et décalé vers le bas */
     opacity: 0;
     transform: translateY(50px);
-    visibility: hidden; /* Empêche de cliquer quand invisible */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond sympa */
+    visibility: hidden;
+    /* Empêche de cliquer quand invisible */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Effet rebond sympa */
+    border-left: 5px solid #10b981;
+    /* Vert NIRD */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-family: sans-serif;
+    z-index: 1000;
+
+    /* État initial : Caché et décalé vers le bas */
+    opacity: 0;
+    transform: translateY(50px);
+    visibility: hidden;
+    /* Empêche de cliquer quand invisible */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Effet rebond sympa */
 }
 
 /* État affiché */
@@ -246,7 +308,14 @@ footer {
     cursor: pointer;
     color: #999;
 }
-#closePopupBtn:hover { color: #333; }
+
+#closePopupBtn:hover {
+    color: #333;
+}
+
+#closePopupBtn:hover {
+    color: #333;
+}
 
 .btn-mini {
     display: inline-block;
@@ -256,14 +325,152 @@ footer {
     font-weight: bold;
     font-size: 0.9rem;
 }
+
 .popup-right {
     right: 30px;
-    border-left: 5px solid #10b981; /* Vert */
+    border-left: 5px solid #10b981;
+    /* Vert */
 }
+
 
 /* --- Spécificités Gauche --- */
 .popup-left {
     left: 30px;
-    border-right: 5px solid #6366f1; /* Bleu (Indigo) pour changer */
+    border-right: 5px solid #6366f1;
+    /* Bleu (Indigo) pour changer */
 }
 
+/* Le conteneur qui tient la vidéo et les boutons ensemble */
+.video-wrapper {
+    position: relative;
+    /* Indispensable : c'est le point de repère */
+    width: 100%;
+    max-width: 1600px;
+    /* Limite la largeur pour pas que ça soit géant */
+    margin: 20px auto;
+    /* Centre le bloc */
+    display: block;
+}
+
+/* Style de la vidéo pour qu'elle remplisse le conteneur */
+.video-wrapper video {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+/* Le style commun des deux boutons */
+.btn-hand {
+    position: absolute;
+    /* Permet de flotter au-dessus de la vidéo */
+    bottom: 30%;
+    /* Hauteur : À ajuster selon où sont vos mains ! */
+    z-index: 10;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fond blanc un peu transparent */
+    color: #264653;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-hand:hover {
+    transform: scale(1.1);
+    /* Grossit un peu au survol */
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Positionnement précis Gauche / Droite */
+.btn-hand.left {
+    left: 35%;
+    margin-bottom: 15%;
+    /* À 10% du bord gauche */
+}
+
+.btn-hand.right {
+    right: 35%;
+    margin-bottom: 15%;
+    /* À 10% du bord droit */
+}
+
+/* --- ÉCRAN DE FIN (OVERLAY) --- */
+.final-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    /* Noir presque total */
+    z-index: 2000;
+    /* Au-dessus de TOUT (même les pubs) */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+    /* Apparition douce */
+}
+
+.final-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.final-content {
+    max-width: 600px;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 12px;
+    background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+}
+
+.final-content h2 {
+    color: #e76f51;
+    /* Terracotta */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.final-content p {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.final-separator {
+    height: 1px;
+    background: #333;
+    width: 50%;
+    margin: 30px auto;
+}
+
+.btn-final {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-final:hover {
+    transform: scale(1.05);
+    background-color: #e76f51;
+    color: white;
+}

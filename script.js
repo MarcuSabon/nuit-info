@@ -1,100 +1,69 @@
-// import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-// import { db } from "./firebase-config.js";
+/* =========================================
+   1. GESTION DES PUBS (Popups au scroll)
+   ========================================= */
 
-console.log("Position actuelle : " + window.scrollY + "px");
-console.log("AAAH");
-window.addEventListener('scroll', function () {
-    // window.scrollY nous donne la position verticale en pixels
-    console.log("Position actuelle : " + window.scrollY + "px");
-    console.log("Hauteur totale de la page : " + (this.document.body.clientHeight - this.window.innerHeight) + "px");
-});
+function setupScrollPopup(popupId, closeBtnId, percentage) {
+    const popup = document.getElementById(popupId);
+    const closeBtn = document.getElementById(closeBtnId);
+    if (!popup || !closeBtn) return;
 
+    let isClosedByUser = false;
 
-async function ajouterUtilisateur(nom, age) {
-    try {
-        const docRef = await addDoc(collection(db, "users"), {
-            nom: nom,
-            age: age,
-            dateCreation: new Date()
-        });
-        console.log("Document écrit avec l'ID : ", docRef.id);
-    } catch (e) {
-        console.error("Erreur lors de l'ajout : ", e);
-    }
+    window.addEventListener('scroll', function () {
+        if (isClosedByUser) return;
+        const scrollThreshold = percentage * document.body.scrollHeight;
+
+        if (window.scrollY > scrollThreshold) {
+            popup.classList.add('show');
+        } else {
+            popup.classList.remove('show');
+        }
+    });
+
+    closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        popup.classList.remove('show');
+        isClosedByUser = true;
+    });
 }
-// exemple pour ajouter une utilisateur
-// ajouterUtilisateur("Alice", 25);
 
+// Initialisation des pubs
 document.addEventListener("DOMContentLoaded", function () {
-    const popup = document.getElementById('nirdPopup1');
-    const closeBtn = document.getElementById('closePopup1Btn');
-
-    // Variable pour savoir si l'utilisateur a fermé la pop-up manuellement
-    let isClosedByUser = false;
-
-    // Seuil de déclenchement (en pixels)
-    const scrollThreshold = 0.50 * document.body.scrollHeight;
-
-    window.addEventListener('scroll', function () {
-        // Si l'utilisateur a fermé la fenêtre, on ne fait plus rien
-        if (isClosedByUser) return;
-
-        // Si on a dépassé le seuil
-        if (window.scrollY > scrollThreshold) {
-            popup.classList.add('show');
-        } else {
-            // Optionnel : La cacher si on remonte tout en haut
-            popup.classList.remove('show');
-        }
-    });
-
-    // Gestion du bouton Fermer
-    closeBtn.addEventListener('click', function () {
-        popup.classList.remove('show');
-        isClosedByUser = true; // On retient que l'utilisateur l'a fermée
-    });
+    setupScrollPopup('nirdPopup1', 'closePopup1Btn', 0.50);
+    setupScrollPopup('nirdPopup2', 'closePopup2Btn', 0.70);
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const popup = document.getElementById('nirdPopup2');
-    const closeBtn = document.getElementById('closePopup2Btn');
 
-    // Variable pour savoir si l'utilisateur a fermé la pop-up manuellement
-    let isClosedByUser = false;
+/* =========================================
+   2. GESTION DE LA FIN (90% Scroll)
+   ========================================= */
 
-    // Seuil de déclenchement (en pixels)
-    const scrollThreshold = 0.70 * document.body.scrollHeight;
+const finalOverlay = document.getElementById('finalOverlay');
+const stopBtn = document.getElementById('stopScrollBtn');
+let finalShown = false;
 
-    window.addEventListener('scroll', function () {
-        // Si l'utilisateur a fermé la fenêtre, on ne fait plus rien
-        if (isClosedByUser) return;
+window.addEventListener('scroll', function () {
+    // Si on dépasse 90% de la page
+    const limit = 0.90 * document.body.scrollHeight;
 
-        // Si on a dépassé le seuil
-        if (window.scrollY > scrollThreshold) {
-            popup.classList.add('show');
-        } else {
-            // Optionnel : La cacher si on remonte tout en haut
-            popup.classList.remove('show');
-        }
-    });
+    if (!finalShown && window.scrollY > limit) {
+        finalOverlay.classList.add('visible');
 
-    // Gestion du bouton Fermer
-    closeBtn.addEventListener('click', function () {
-        popup.classList.remove('show');
-        isClosedByUser = true; // On retient que l'utilisateur l'a fermée
-    });
-});
+        // Optionnel : Bloquer le scroll pour forcer la lecture
+        document.body.style.overflow = 'hidden';
 
-var clicked = true;
-document.addEventListener('click', function () {
-
-    if (clicked)
-    if (window.scrollY > 0.60 * document.body.scrollHeight) {
-        // L'URL que vous voulez ouvrir
-        const urlCible = "./popup/popup.html";
-
-        // Ouvre l'URL dans un nouvel onglet ('_blank')
-        window.open(urlCible, '_blank');
-        clicked=false;
+        finalShown = true;
     }
 });
+
+// Bouton "J'ai compris"
+if (stopBtn) {
+    stopBtn.addEventListener('click', function () {
+        // On remonte tout en haut de la page pour "recommencer" ou sortir
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // On cache l'overlay et on réactive le scroll
+        finalOverlay.classList.remove('visible');
+        document.body.style.overflow = 'auto';
+    });
+}
