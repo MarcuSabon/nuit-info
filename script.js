@@ -1,100 +1,76 @@
-// import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-// import { db } from "./firebase-config.js";
+/* =========================================
+   GESTION DES POPUPS (Apparition au scroll)
+   ========================================= */
 
-console.log("Position actuelle : " + window.scrollY + "px");
-console.log("AAAH");
-window.addEventListener('scroll', function () {
-    // window.scrollY nous donne la position verticale en pixels
-    console.log("Position actuelle : " + window.scrollY + "px");
-    console.log("Hauteur totale de la page : " + (this.document.body.clientHeight - this.window.innerHeight) + "px");
-});
+// Fonction générique pour gérer l'apparition des pubs
+function setupScrollPopup(popupId, closeBtnId, percentage) {
+    const popup = document.getElementById(popupId);
+    const closeBtn = document.getElementById(closeBtnId);
 
+    // Si les éléments n'existent pas, on arrête pour éviter les erreurs
+    if (!popup || !closeBtn) return;
 
-async function ajouterUtilisateur(nom, age) {
-    try {
-        const docRef = await addDoc(collection(db, "users"), {
-            nom: nom,
-            age: age,
-            dateCreation: new Date()
-        });
-        console.log("Document écrit avec l'ID : ", docRef.id);
-    } catch (e) {
-        console.error("Erreur lors de l'ajout : ", e);
-    }
+    let isClosedByUser = false;
+
+    window.addEventListener('scroll', function () {
+        if (isClosedByUser) return;
+
+        // Calcul du seuil en pixels
+        const scrollThreshold = percentage * document.body.scrollHeight;
+
+        if (window.scrollY > scrollThreshold) {
+            popup.classList.add('show');
+        } else {
+            popup.classList.remove('show');
+        }
+    });
+
+    closeBtn.addEventListener('click', function (e) {
+        // Empêche le clic du bouton de fermer de déclencher le piège global
+        e.stopPropagation();
+        popup.classList.remove('show');
+        isClosedByUser = true;
+    });
 }
-// exemple pour ajouter une utilisateur
-// ajouterUtilisateur("Alice", 25);
 
+// Initialisation des deux popups (50% et 70%)
 document.addEventListener("DOMContentLoaded", function () {
-    const popup = document.getElementById('nirdPopup1');
-    const closeBtn = document.getElementById('closePopup1Btn');
-
-    // Variable pour savoir si l'utilisateur a fermé la pop-up manuellement
-    let isClosedByUser = false;
-
-    // Seuil de déclenchement (en pixels)
-    const scrollThreshold = 0.50 * document.body.scrollHeight;
-
-    window.addEventListener('scroll', function () {
-        // Si l'utilisateur a fermé la fenêtre, on ne fait plus rien
-        if (isClosedByUser) return;
-
-        // Si on a dépassé le seuil
-        if (window.scrollY > scrollThreshold) {
-            popup.classList.add('show');
-        } else {
-            // Optionnel : La cacher si on remonte tout en haut
-            popup.classList.remove('show');
-        }
-    });
-
-    // Gestion du bouton Fermer
-    closeBtn.addEventListener('click', function () {
-        popup.classList.remove('show');
-        isClosedByUser = true; // On retient que l'utilisateur l'a fermée
-    });
+    setupScrollPopup('nirdPopup1', 'closePopup1Btn', 0.50);
+    setupScrollPopup('nirdPopup2', 'closePopup2Btn', 0.70);
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const popup = document.getElementById('nirdPopup2');
-    const closeBtn = document.getElementById('closePopup2Btn');
 
-    // Variable pour savoir si l'utilisateur a fermé la pop-up manuellement
-    let isClosedByUser = false;
+/* =========================================
+   LE PIÈGE (Clic ailleurs après 60%)
+   ========================================= */
 
-    // Seuil de déclenchement (en pixels)
-    const scrollThreshold = 0.70 * document.body.scrollHeight;
+let piegeActive = false; // Pour que ça n'arrive qu'une seule fois
 
-    window.addEventListener('scroll', function () {
-        // Si l'utilisateur a fermé la fenêtre, on ne fait plus rien
-        if (isClosedByUser) return;
+document.addEventListener('click', function (event) {
 
-        // Si on a dépassé le seuil
-        if (window.scrollY > scrollThreshold) {
-            popup.classList.add('show');
-        } else {
-            // Optionnel : La cacher si on remonte tout en haut
-            popup.classList.remove('show');
+    // 1. EXCEPTION : Si on clique DANS une pub (.popup-box)
+    // La méthode .closest() vérifie si l'élément cliqué est à l'intérieur de la classe .popup-box
+    if (event.target.closest('.popup-box')) {
+        // On ne fait rien ici, on laisse le lien HTML <a> faire son travail 
+        // (aller vers decath.html) ou le bouton fermer.
+        return;
+    }
+
+    // 2. LE PIÈGE : Si on clique ailleurs
+    const limiteScroll = 0.60 * document.body.scrollHeight;
+
+    // Si on a scrollé assez bas ET que le piège n'a pas encore sauté
+    if (!piegeActive && window.scrollY > limiteScroll) {
+
+        if (clicked) {
+            if (window.scrollY > 0.60 * document.body.scrollHeight) {
+                // L'URL que vous voulez ouvrir
+                const urlCible = "./popup/popup.html";
+
+                // Ouvre l'URL dans un nouvel onglet ('_blank')
+                window.open(urlCible, '_blank');
+                clicked = false;
+            }
         }
-    });
-
-    // Gestion du bouton Fermer
-    closeBtn.addEventListener('click', function () {
-        popup.classList.remove('show');
-        isClosedByUser = true; // On retient que l'utilisateur l'a fermée
-    });
-});
-
-var clicked = true;
-document.addEventListener('click', function () {
-
-    if (clicked)
-        if (window.scrollY > 0.60 * document.body.scrollHeight) {
-            // L'URL que vous voulez ouvrir
-            const urlCible = "./popup/popup.html";
-
-            // Ouvre l'URL dans un nouvel onglet ('_blank')
-            window.open(urlCible, '_blank');
-            clicked = false;
-        }
+    }
 });

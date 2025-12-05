@@ -158,6 +158,49 @@ img {
     text-align: center;
 }
 
+.full-black {
+    background: #000000;
+    height: 6000px;
+    padding: 120px 5%;
+    text-align: center;
+}
+
+.tungtung {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.brrbbrrr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+.hehe {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 60%;
+    margin-right: 0;
+    margin-left: auto;
+    align-self: flex-start;
+}
+
+#closePopup1Btn {
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    display: flex;
+    margin-right: 0;
+    margin-left: auto;
+    align-self: flex-start;
+}
 
 /* --- FOOTER --- */
 footer {
@@ -203,7 +246,7 @@ footer {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 300px;
+    width: 30%;
     background-color: white;
     border-left: 5px solid #10b981;
     /* Vert NIRD */
@@ -219,6 +262,7 @@ footer {
     /* Empêche de cliquer quand invisible */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     /* Effet rebond sympa */
+<<<<<<< HEAD
     border-left: 5px solid #10b981;
     /* Vert NIRD */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -233,6 +277,8 @@ footer {
     /* Empêche de cliquer quand invisible */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     /* Effet rebond sympa */
+=======
+>>>>>>> a61732e (ajout index sahur et popup)
 }
 
 /* État affiché */
@@ -269,10 +315,13 @@ footer {
 #closePopupBtn:hover {
     color: #333;
 }
+<<<<<<< HEAD
 
 #closePopupBtn:hover {
     color: #333;
 }
+=======
+>>>>>>> a61732e (ajout index sahur et popup)
 
 .btn-mini {
     display: inline-block;
@@ -287,7 +336,10 @@ footer {
     right: 30px;
     border-left: 5px solid #10b981;
     /* Vert */
+<<<<<<< HEAD
 
+=======
+>>>>>>> a61732e (ajout index sahur et popup)
 }
 
 
