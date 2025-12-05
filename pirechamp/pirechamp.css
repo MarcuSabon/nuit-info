@@ -1,19 +1,23 @@
 :root {
   --bg-color: #f3f4f6;
   --text-color: #1f2937;
-  --accent-color: #2563eb; 
+  --accent-color: #2563eb;
   --accent-hover: #1d4ed8;
   --error-color: #ef4444;
   --warn-color: #f59e0b;
   --panel-bg: #ffffff;
   --border-color: #e5e7eb;
-  
+
   --font-display: 'Inter', system-ui, sans-serif;
   --font-mono: 'Space Mono', monospace;
   --radius: 12px;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   background-color: var(--bg-color);
@@ -36,7 +40,7 @@ body {
   border-radius: var(--radius);
   padding: 3rem;
   position: relative;
-  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
 }
 
 header {
@@ -87,9 +91,9 @@ p {
 }
 
 .instruction {
-    font-size: 0.95rem;
-    color: #374151;
-    margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 1rem;
 }
 
 /* Messages */
@@ -134,17 +138,20 @@ input:focus {
 }
 
 .input-error {
-    border-color: var(--error-color) !important;
-    background-color: #fef2f2 !important;
+  border-color: var(--error-color) !important;
+  background-color: #fef2f2 !important;
 }
 
 .error-text {
-    color: var(--error-color);
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
-    font-weight: 600;
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
 }
-.hidden { display: none; }
+
+.hidden {
+  display: none;
+}
 
 /* Buttons */
 .btn {
@@ -163,6 +170,7 @@ input:focus {
   color: white;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
+
 .btn.primary:hover {
   background: var(--accent-hover);
   transform: translateY(-1px);
@@ -173,6 +181,7 @@ input:focus {
   border: 2px solid var(--border-color);
   color: var(--text-color);
 }
+
 .btn.secondary:hover {
   border-color: var(--text-color);
   background: #f9fafb;
@@ -197,158 +206,300 @@ input:focus {
 }
 
 /* Animations & Steps */
-.step { display: none; opacity: 0; }
-.step.active { display: block; opacity: 1; animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.step {
+  display: none;
+  opacity: 0;
+}
+
+.step.active {
+  display: block;
+  opacity: 1;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .progress-bar {
-  width: 100%; height: 6px; background: #f3f4f6;
-  border-radius: 100px; margin-bottom: 2.5rem; overflow: hidden;
+  width: 100%;
+  height: 6px;
+  background: #f3f4f6;
+  border-radius: 100px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
 }
+
 .progress-bar .fill {
-  height: 100%; background: var(--accent-color);
-  border-radius: 100px; transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  height: 100%;
+  background: var(--accent-color);
+  border-radius: 100px;
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 /* Module Specifics */
-.quantum-input { transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.quantum-input.jitter { animation: jitter 0.2s infinite; border-color: var(--warn-color); background: #fffbeb; }
+.quantum-input {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quantum-input.jitter {
+  animation: jitter 0.2s infinite;
+  border-color: var(--warn-color);
+  background: #fffbeb;
+}
 
 @keyframes jitter {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(2px, 2px); }
-  50% { transform: translate(-2px, -2px); }
-  75% { transform: translate(-2px, 2px); }
-  100% { transform: translate(2px, -2px); }
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(2px, 2px);
+  }
+
+  50% {
+    transform: translate(-2px, -2px);
+  }
+
+  75% {
+    transform: translate(-2px, 2px);
+  }
+
+  100% {
+    transform: translate(2px, -2px);
+  }
 }
 
 .quantum-value {
-  margin-top: 0.75rem; font-size: 0.875rem; color: #6b7280;
-  font-family: var(--font-mono); background: #f3f4f6;
-  padding: 0.5rem; border-radius: 6px; display: block;
-  margin-bottom: 1rem; /* espace entre la valeur détectée et les contrôles */
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-family: var(--font-mono);
+  background: #f3f4f6;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: block;
+  margin-bottom: 1rem;
+  /* espace entre la valeur détectée et les contrôles */
 }
+
 /* --- EPREUVE 4 : BATTERY PUMP --- */
 .energy-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
 }
 
 .battery-container {
-    width: 60px;
-    height: 120px;
-    border: 4px solid var(--text-color);
-    border-radius: 8px;
-    position: relative;
-    background: #f3f4f6;
-    overflow: hidden; /* Pour couper la barre qui dépasse */
-    margin-bottom: 1rem;
+  width: 60px;
+  height: 120px;
+  border: 4px solid var(--text-color);
+  border-radius: 8px;
+  position: relative;
+  background: #f3f4f6;
+  overflow: hidden;
+  /* Pour couper la barre qui dépasse */
+  margin-bottom: 1rem;
 }
 
 /* Le petit bitoniau en haut de la pile */
 .battery-container::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 6px;
-    background: var(--text-color);
-    border-radius: 2px 2px 0 0;
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 6px;
+  background: var(--text-color);
+  border-radius: 2px 2px 0 0;
 }
 
 .battery-level {
-    width: 100%;
-    background-color: #ef4444;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transition: height 0.1s linear, background-color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  background-color: #ef4444;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: height 0.1s linear, background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Texte % au milieu de la pile */
 #battery-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-mono);
-    font-weight: 800;
-    color: var(--text-color);
-    z-index: 2;
-    mix-blend-mode: hard-light; /* Pour que le texte reste lisible sur la couleur */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: var(--text-color);
+  z-index: 2;
+  mix-blend-mode: hard-light;
+  /* Pour que le texte reste lisible sur la couleur */
 }
 
 /* Le bouton à spammer */
 .pump-btn {
-    width: 100%;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    active: scale(0.95); /* Effet clic natif */
-    user-select: none; /* Empêche de sélectionner le texte en cliquant vite */
+  width: 100%;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  active: scale(0.95);
+  /* Effet clic natif */
+  user-select: none;
+  /* Empêche de sélectionner le texte en cliquant vite */
 }
 
 .mini-instruction {
-    font-size: 0.75rem;
-    color: #9ca3af;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* Effet quand c'est fini */
 .battery-level.charged {
-    box-shadow: 0 0 20px #10b981;
-    animation: pulseCharge 1s infinite;
+  box-shadow: 0 0 20px #10b981;
+  animation: pulseCharge 1s infinite;
 }
 
 @keyframes pulseCharge {
-    0% { opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { opacity: 0.8; }
+  0% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.8;
+  }
 }
+
 /* Espacement général entre le champ et les boutons de contrôle */
-.field-container { margin-bottom: 1.25rem; }
+.field-container {
+  margin-bottom: 1.25rem;
+}
 
 /* Disposition des boutons : espacement et alignement */
-.controls { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 0.5rem; }
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
 
-.mood-input.angry { border-color: var(--error-color); background-color: #fef2f2; animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-.mood-input.happy { border-color: #10b981; background-color: #ecfdf5; }
-.mood-indicator { font-size: 0.75rem; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600; color: #9ca3af; }
+.mood-input.angry {
+  border-color: var(--error-color);
+  background-color: #fef2f2;
+  animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.mood-input.happy {
+  border-color: #10b981;
+  background-color: #ecfdf5;
+}
+
+.mood-indicator {
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #9ca3af;
+}
 
 @keyframes shake {
-  10%, 90% { transform: translate3d(-1px, 0, 0); }
-  20%, 80% { transform: translate3d(2px, 0, 0); }
-  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-  40%, 60% { transform: translate3d(4px, 0, 0); }
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 @keyframes shakeBtn {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-.shake-btn { animation: shakeBtn 0.3s; }
 
-.perspective-container { perspective: 800px; margin: 2rem 0; }
-.input-wrapper-3d { transform-style: preserve-3d; transition: transform 0.5s; }
-.input-3d { backface-visibility: visible; background: white; transition: filter 0.3s; filter: blur(2px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.shake-btn {
+  animation: shakeBtn 0.3s;
+}
+
+.perspective-container {
+  perspective: 800px;
+  margin: 2rem 0;
+}
+
+.input-wrapper-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.input-3d {
+  backface-visibility: visible;
+  background: white;
+  transition: filter 0.3s;
+  filter: blur(2px);
+}
 
 .scan-line {
-  position: fixed; top: 0; left: 0; width: 100%; height: 5px;
-  background-color: rgba(0, 0, 0, 0.03); pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.03);
+  pointer-events: none;
   animation: scan 3s infinite linear;
 }
-@keyframes scan { 0% { transform: translateY(-100vh); } 100% { transform: translateY(100vh); } }
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100vh);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}

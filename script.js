@@ -1,21 +1,16 @@
 /* =========================================
-   GESTION DES POPUPS (Apparition au scroll)
+   1. GESTION DES PUBS (Popups au scroll)
    ========================================= */
 
-// Fonction générique pour gérer l'apparition des pubs
 function setupScrollPopup(popupId, closeBtnId, percentage) {
     const popup = document.getElementById(popupId);
     const closeBtn = document.getElementById(closeBtnId);
-
-    // Si les éléments n'existent pas, on arrête pour éviter les erreurs
     if (!popup || !closeBtn) return;
 
     let isClosedByUser = false;
 
     window.addEventListener('scroll', function () {
         if (isClosedByUser) return;
-
-        // Calcul du seuil en pixels
         const scrollThreshold = percentage * document.body.scrollHeight;
 
         if (window.scrollY > scrollThreshold) {
@@ -26,14 +21,13 @@ function setupScrollPopup(popupId, closeBtnId, percentage) {
     });
 
     closeBtn.addEventListener('click', function (e) {
-        // Empêche le clic du bouton de fermer de déclencher le piège global
         e.stopPropagation();
         popup.classList.remove('show');
         isClosedByUser = true;
     });
 }
 
-// Initialisation des deux popups (50% et 70%)
+// Initialisation des pubs
 document.addEventListener("DOMContentLoaded", function () {
     setupScrollPopup('nirdPopup1', 'closePopup1Btn', 0.50);
     setupScrollPopup('nirdPopup2', 'closePopup2Btn', 0.70);
@@ -41,36 +35,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /* =========================================
-   LE PIÈGE (Clic ailleurs après 60%)
+   2. GESTION DE LA FIN (90% Scroll)
    ========================================= */
 
-let piegeActive = false; // Pour que ça n'arrive qu'une seule fois
+const finalOverlay = document.getElementById('finalOverlay');
+const stopBtn = document.getElementById('stopScrollBtn');
+let finalShown = false;
 
-document.addEventListener('click', function (event) {
+window.addEventListener('scroll', function () {
+    // Si on dépasse 90% de la page
+    const limit = 0.90 * document.body.scrollHeight;
 
-    // 1. EXCEPTION : Si on clique DANS une pub (.popup-box)
-    // La méthode .closest() vérifie si l'élément cliqué est à l'intérieur de la classe .popup-box
-    if (event.target.closest('.popup-box')) {
-        // On ne fait rien ici, on laisse le lien HTML <a> faire son travail 
-        // (aller vers decath.html) ou le bouton fermer.
-        return;
-    }
+    if (!finalShown && window.scrollY > limit) {
+        finalOverlay.classList.add('visible');
 
-    // 2. LE PIÈGE : Si on clique ailleurs
-    const limiteScroll = 0.60 * document.body.scrollHeight;
+        // Optionnel : Bloquer le scroll pour forcer la lecture
+        document.body.style.overflow = 'hidden';
 
-    // Si on a scrollé assez bas ET que le piège n'a pas encore sauté
-    if (!piegeActive && window.scrollY > limiteScroll) {
-
-        if (clicked) {
-            if (window.scrollY > 0.60 * document.body.scrollHeight) {
-                // L'URL que vous voulez ouvrir
-                const urlCible = "./popup/popup.html";
-
-                // Ouvre l'URL dans un nouvel onglet ('_blank')
-                window.open(urlCible, '_blank');
-                clicked = false;
-            }
-        }
+        finalShown = true;
     }
 });
+
+// Bouton "J'ai compris"
+if (stopBtn) {
+    stopBtn.addEventListener('click', function () {
+        // On remonte tout en haut de la page pour "recommencer" ou sortir
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // On cache l'overlay et on réactive le scroll
+        finalOverlay.classList.remove('visible');
+        document.body.style.overflow = 'auto';
+    });
+}
