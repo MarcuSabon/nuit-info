@@ -35,19 +35,19 @@
     <section class="battle-arena">
         <div class="section-title">
             <h2>L'Arène des Alternatives</h2>
-            <p>Pourquoi jeter des PC fonctionnels quand on peut changer le moteur ? Voici les duels qui définissent notre avenir numérique.</p>
+            <p>Pourquoi subir les règles des géants quand on peut changer le jeu ? Voici les duels qui définissent notre avenir numérique.</p>
         </div>
 
-        <!-- COMBAT 1 : OS -->
+        <!-- COMBAT 1 : OS (Windows vs Linux) -->
         <div class="battle-card">
             <div class="battle-header">
-                <div class="fighter-name" style="color: #c0392b">🏢 GOLIATH (Propriétaire)</div>
-                <div class="vs-badge">VS</div>
-                <div class="fighter-name" style="color: #27ae60">🌿 DAVID (Open Source)</div>
+                <div class="fighter-name" style="color: #c0392b">🏢 GOLIATH (Système)</div>
+                <div class="vs-badge">ROUND 1</div>
+                <div class="fighter-name" style="color: #27ae60">🌿 DAVID (Système)</div>
             </div>
             
             <div class="battle-body">
-                <!-- Windows 10 -->
+                <!-- Windows -->
                 <div class="fighter-zone bad">
                     <h3>Windows 10 / 11</h3>
                     <p><em>Le Colosse aux pieds d'argile</em></p>
@@ -92,24 +92,22 @@
                     </div>
 
                     <div class="install-comparison">
-                        <h4>💡 Le Choc des Cultures : Installer un logiciel</h4>
-                        <p><strong>Sur Windows :</strong> Vous cherchez un ".exe" sur Google, vous risquez de télécharger un virus, vous cliquez "Suivant, Suivant, Accepter les pubs".</p>
-                        <p style="margin-top: 10px;"><strong>Sur Linux (La voie Royale) :</strong> Tout se passe dans la <strong>Logithèque</strong> (comme l'App Store sur votre téléphone). C'est centralisé, sécurisé et automatique.</p>
-                        <span class="code-snippet">
-                            # Ou pour les pros du terminal, une seule ligne suffit :<br>
-                            sudo apt install vlc firefox libreoffice
-                        </span>
+                        <h4>💡 Envie de vous lancer ?</h4>
+                        <p>Le collectif NIRD a préparé un tutoriel complet, pas à pas, spécialement pour les établissements scolaires.</p>
+                        <a href="https://nird.forge.apps.education.fr/linux/" target="_blank" class="btn-hand" style="position:relative; bottom:0; left:0; display:inline-block; margin-top:10px; color:#2c3e50;">
+                            👉 Voir le Tuto d'Installation NIRD
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- COMBAT 2 : Bureautique -->
+        <!-- COMBAT 2 : Bureautique (Office vs LibreOffice) -->
         <div class="battle-card">
             <div class="battle-header">
                 <div class="fighter-name" style="color: #c0392b">🔒 Suite Office 365</div>
-                <div class="vs-badge">VS</div>
-                <div class="fighter-name" style="color: #27ae60">🔓 LibreOffice / OpenOffice</div>
+                <div class="vs-badge">ROUND 2</div>
+                <div class="fighter-name" style="color: #27ae60">🔓 LibreOffice</div>
             </div>
             
             <div class="battle-body">
@@ -118,7 +116,7 @@
                     <h3>Microsoft Office</h3>
                     <ul class="stat-list">
                         <li><strong>Prison Dorée :</strong> Formats fermés (.docx) qui changent souvent pour forcer la mise à jour.</li>
-                        <li><strong>Abonnement :</strong> Paiement récurrent, sinon plus d'accès.</li>
+                        <li><strong>Abonnement :</strong> Paiement récurrent, sinon plus d'accès à vos propres fichiers.</li>
                         <li><strong>Cloud dépendant :</strong> Pousse à stocker sur OneDrive.</li>
                     </ul>
                 </div>
@@ -134,6 +132,147 @@
                 </div>
             </div>
         </div>
+
+        <!-- COMBAT 3 : Création (Adobe vs Libres) -->
+        <div class="battle-card">
+            <div class="battle-header">
+                <div class="fighter-name" style="color: #c0392b">🎨 Adobe Creative Cloud</div>
+                <div class="vs-badge">ROUND 3</div>
+                <div class="fighter-name" style="color: #27ae60">🖌️ Atelier Libre (GIMP/Inkscape)</div>
+            </div>
+            
+            <div class="battle-body">
+                <!-- Adobe -->
+                <div class="fighter-zone bad">
+                    <h3>Photoshop / Premiere / Illustrator</h3>
+                    <p><em>L'Usine à Gaz</em></p>
+                    <ul class="stat-list">
+                        <li><strong>Prix Exorbitant :</strong> Des centaines d'euros par an et par poste. Inaccessible pour beaucoup d'élèves chez eux.</li>
+                        <li><strong>Verrouillage :</strong> Si vous arrêtez de payer, vous ne pouvez plus ouvrir vos projets (.psd, .prproj).</li>
+                        <li><strong>Lourd :</strong> Nécessite des PC de "gamer" très chers pour fonctionner correctement.</li>
+                    </ul>
+                </div>
+
+                <!-- Open Source -->
+                <div class="fighter-zone good">
+                    <h3>GIMP / Inkscape / Kdenlive</h3>
+                    <p><em>L'Atelier de l'Artisan</em></p>
+                    <ul class="stat-list">
+                        <li><strong>Accessibilité :</strong> Les élèves peuvent l'installer légalement à la maison pour finir leurs devoirs.</li>
+                        <li><strong>Standards :</strong> Utilise des formats ouverts (SVG pour le vectoriel) compatibles partout.</li>
+                        <li><strong>Performance :</strong> Kdenlive (montage vidéo) tourne très bien sur des machines modestes sous Linux.</li>
+                    </ul>
+                </div>
+                
+                 <!-- Tutoriel Art -->
+                 <div class="battle-tutorial">
+                    <h3>🎓 L'Alternative Scolaire</h3>
+                    <p>Pour remplacer la suite Adobe au lycée :</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>📸 <strong>Photoshop</strong> ➔ <strong>GIMP</strong> (Retouche photo)</li>
+                        <li>✒️ <strong>Illustrator</strong> ➔ <strong>Inkscape</strong> (Dessin vectoriel, logos)</li>
+                        <li>🎬 <strong>Premiere Pro</strong> ➔ <strong>Kdenlive</strong> (Montage vidéo pro)</li>
+                        <li>📄 <strong>InDesign</strong> ➔ <strong>Scribus</strong> (Mise en page journal du lycée)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMBAT 4 : Navigateurs (Chrome vs Firefox) -->
+        <div class="battle-card">
+            <div class="battle-header">
+                <div class="fighter-name" style="color: #c0392b">👁️ Chrome / Edge</div>
+                <div class="vs-badge">ROUND 4</div>
+                <div class="fighter-name" style="color: #27ae60">🦁 Brave / LibreWolf</div>
+            </div>
+            
+            <div class="battle-body">
+                <!-- Chrome/Edge -->
+                <div class="fighter-zone bad">
+                    <h3>Google Chrome & Edge</h3>
+                    <p><em>Les Espions Commerciaux</em></p>
+                    <ul class="stat-list">
+                        <li><strong>Pistage massif :</strong> Votre historique sert à cibler la publicité (Google Ads).</li>
+                        <li><strong>Monopole :</strong> Ils tentent de bloquer les bloqueurs de pub (Manifest V3).</li>
+                        <li><strong>Gourmand :</strong> Consomme énormément de mémoire RAM.</li>
+                    </ul>
+                </div>
+
+                <!-- Brave / LibreWolf -->
+                <div class="fighter-zone good">
+                    <h3>Brave / LibreWolf</h3>
+                    <p><em>Les Gardiens de la Vie Privée</em></p>
+                    <ul class="stat-list">
+                        <li><strong>Bouclier Intégré :</strong> Bloque les pubs, les trackers et les scripts malveillants nativement (sans extension).</li>
+                        <li><strong>Rapidité :</strong> Charge les pages jusqu'à 3x plus vite en éliminant le "bruit" publicitaire.</li>
+                        <li><strong>Zéro Collecte :</strong> Conçus pour ne rien savoir de votre navigation. Vos données restent privées.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMBAT 5 : Communication (Discord vs Matrix) -->
+        <div class="battle-card">
+            <div class="battle-header">
+                <div class="fighter-name" style="color: #c0392b">💬 Discord / WhatsApp</div>
+                <div class="vs-badge">ROUND 5</div>
+                <div class="fighter-name" style="color: #27ae60">🛡️ Element / Mattermost</div>
+            </div>
+            
+            <div class="battle-body">
+                <!-- Discord -->
+                <div class="fighter-zone bad">
+                    <h3>Discord / WhatsApp</h3>
+                    <ul class="stat-list">
+                        <li><strong>Données Personnelles :</strong> Propriété de Meta (WhatsApp) ou Tencent/Investisseurs (Discord). Vos métadonnées sont vendues.</li>
+                        <li><strong>Jardin Clos :</strong> Impossible de parler à quelqu'un qui n'a pas l'application spécifique.</li>
+                        <li><strong>Modération opaque :</strong> Fermeture de compte arbitraire possible à tout moment.</li>
+                    </ul>
+                </div>
+
+                <!-- Matrix/Element -->
+                <div class="fighter-zone good">
+                    <h3>Element (Matrix) / Apps Edu</h3>
+                    <ul class="stat-list">
+                        <li><strong>Confidentialité :</strong> Chiffrement de bout en bout réel. Pas de numéro de téléphone obligatoire.</li>
+                        <li><strong>Fédéré :</strong> Comme les e-mails ! Un utilisateur "Apps.education" peut parler à un utilisateur "Matrix.org".</li>
+                        <li><strong>Souverain :</strong> L'État français propose ses propres instances pour les profs (Tchap).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMBAT 6 : Cloud (Drive vs Nextcloud) -->
+        <div class="battle-card">
+            <div class="battle-header">
+                <div class="fighter-name" style="color: #c0392b">☁️ GAFAM Cloud</div>
+                <div class="vs-badge">ROUND 6</div>
+                <div class="fighter-name" style="color: #27ae60">🏰 Apps Education / Nextcloud</div>
+            </div>
+            
+            <div class="battle-body">
+                <!-- GAFAM Cloud -->
+                <div class="fighter-zone bad">
+                    <h3>Google Drive / OneDrive</h3>
+                    <ul class="stat-list">
+                        <li><strong>Cloud Act (USA) :</strong> Vos données scolaires peuvent être saisies par la justice américaine.</li>
+                        <li><strong>Profilage :</strong> Vos documents alimentent l'entraînement de leurs IA.</li>
+                        <li><strong>Captivité :</strong> Difficile de migrer vos données ailleurs une fois installées.</li>
+                    </ul>
+                </div>
+
+                <!-- Nextcloud -->
+                <div class="fighter-zone good">
+                    <h3>La Forge / Apps.education.fr</h3>
+                    <ul class="stat-list">
+                        <li><strong>Souveraineté :</strong> Données hébergées en France/UE, protégées par le RGPD.</li>
+                        <li><strong>Collaboratif :</strong> Édition de documents à plusieurs en temps réel (comme Docs, mais libre).</li>
+                        <li><strong>Éthique :</strong> Pas de scan de vos devoirs pour vendre de la pub.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- Transition vers la suite du site -->
@@ -163,7 +302,7 @@
     </section>
 
     <section class="full-black">
-        <h2 style="margin: 10%;">L'entre des demons du Web - culture du vide et addiction technologique</h2>
+        <h2 style="margin: 10%;">L'antre des démons du Web - culture du vide et addiction technologique</h2>
         <img class="tungtung" src="img/tungtung.png">
         <img class="brrbbrrr" src="img/Brr-Brr-Patapim-Viral-TikTok-Meme.png">
         <img class="hehe" src="img/Bombini-Gusini-TikTok-Meme-Viral-Trend.png">

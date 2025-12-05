@@ -156,7 +156,16 @@ img {
     font-size: 1.2rem; 
     display: flex; 
     align-items: center; 
-    gap: 0.5rem; 
+    gap: 0.5rem;
+    
+    /* MODIF : Force l'égalité des largeurs pour centrer le badge */
+    flex: 1;
+}
+
+/* MODIF : Aligne le combattant de droite vers la droite */
+.battle-header .fighter-name:last-child {
+    justify-content: flex-end;
+    text-align: right;
 }
 
 .vs-badge {
@@ -166,6 +175,10 @@ img {
     padding: 0.5rem 1rem;
     border-radius: 50px;
     font-size: 0.9rem;
+    
+    /* MODIF : Empêche le badge d'être écrasé */
+    flex-shrink: 0;
+    margin: 0 1rem;
 }
 
 .battle-body {
@@ -605,4 +618,3 @@ footer {
     background-color: #e76f51;
     color: white;
 }
-
