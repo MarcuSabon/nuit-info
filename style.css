@@ -1,14 +1,20 @@
 /* --- VARIABLES (Couleurs) --- */
 :root {
-    --couleur-primaire: #264653;
-    /* Bleu pétrole */
-    --couleur-stylé: #e76f51;
-    /* Terracotta */
+    /* Couleurs existantes */
+    --couleur-primaire: #264653; /* Bleu pétrole */
+    --couleur-stylé: #e76f51;    /* Terracotta */
     --couleur-blanc: #ffffff;
-    --couleur-blanc-cassé: #f7f9fa;
-    /* Gris très clair */
+    --couleur-blanc-cassé: #f7f9fa; /* Gris très clair */
     --couleur-texte: #2b2d42;
     --couleur-texte-claire: #6d6875;
+
+    /* Nouvelles variables pour l'Arène (Combats) */
+    --primary: #2c3e50;
+    --accent: #e74c3c;
+    --good: #27ae60;
+    --bad: #c0392b;
+    --light: #ecf0f1;
+    --dark: #2d3436;
 }
 
 
@@ -44,18 +50,20 @@ img {
 .navbar {
     display: flex;
     justify-content: space-between;
-    /* Espace le contenu */
     align-items: center;
     padding: 20px 5%;
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: fixed; /* Fixé pour rester en haut */
+    width: 90%; /* Ajusté car padding 5% de chaque coté */
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .logo {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 900;
+    letter-spacing: -1px;
     color: var(--couleur-primaire);
 }
 
@@ -69,12 +77,12 @@ img {
 .hero {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 80px 5%;
+    justify-content: center;
+    padding: 8rem 5% 4rem; /* Padding top augmenté pour la navbar fixe */
     min-height: 40vh;
-    /* Hauteur ajustée */
-    background-color: var(--couleur-blanc-cassé);
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     gap: 50px;
+    flex-wrap: wrap;
 }
 
 .hero-content {
@@ -83,8 +91,10 @@ img {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    line-height: 1.1;
 }
 
 .hero p {
@@ -93,9 +103,139 @@ img {
 
 .hero-image {
     flex: 1;
+    max-width: 500px;
 }
 
-/* --- SECTIONS (Texte + Image) --- */
+.hero-image img {
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* --- NOUVELLE SECTION : L'ARÈNE DES ALTERNATIVES --- */
+.battle-arena {
+    padding: 4rem 2rem;
+    background: #fff;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary);
+}
+.section-title p { 
+    max-width: 700px; 
+    margin: 0 auto; 
+    color: #666; 
+}
+
+/* Battle Card Design */
+.battle-card {
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.battle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.fighter-name { 
+    font-weight: 800; 
+    font-size: 1.2rem; 
+    display: flex; 
+    align-items: center; 
+    gap: 0.5rem; 
+}
+
+.vs-badge {
+    background: var(--dark);
+    color: white;
+    font-weight: 900;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+}
+
+.battle-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Zones Good/Bad */
+.fighter-zone { padding: 2rem; }
+.fighter-zone.bad { background: #fff5f5; border-right: 1px solid #eee; }
+.fighter-zone.good { background: #f0fff4; }
+
+.stat-list { list-style: none; padding: 0; margin-top: 1rem; }
+.stat-list li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    font-weight: normal; /* Override clean-list if conflict */
+}
+.fighter-zone.bad .stat-list li::before {
+    content: "❌"; position: absolute; left: 0;
+}
+.fighter-zone.good .stat-list li::before {
+    content: "✅"; position: absolute; left: 0;
+}
+
+/* Tutorial / Details Section inside card */
+.battle-tutorial {
+    grid-column: 1 / -1;
+    padding: 2rem;
+    background: var(--primary);
+    color: white;
+    border-top: 1px solid #ddd;
+}
+.battle-tutorial h3 { margin-top: 0; color: #3498db; }
+.battle-tutorial p { color: #ecf0f1; } /* Texte clair sur fond sombre */
+
+.step-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.step-card {
+    background: rgba(255,255,255,0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+}
+.step-num {
+    font-weight: 900; color: #3498db; font-size: 1.5rem; margin-bottom: 0.5rem; display: block;
+}
+
+.install-comparison {
+    margin-top: 2rem;
+    background: rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+.code-snippet {
+    font-family: monospace;
+    background: #111;
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: #2ecc71;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* --- SECTIONS STANDARD (Texte + Image) --- */
 .section-container {
     padding: 100px 5%;
 }
@@ -107,7 +247,6 @@ img {
 .grid-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* 50% - 50% */
     gap: 60px;
     align-items: center;
 }
@@ -142,11 +281,10 @@ img {
 }
 
 
-/* --- gradient --- */
+/* --- SECTIONS SPECIALES & FIN --- */
 .section-gradient {
-    /* Le dégradé : Du Blanc (0%) vers le Bleu Pétrole (100%) */
     background: linear-gradient(to bottom, var(--couleur-blanc), var(--couleur-texte) 100%);
-    height: 2000px;
+    height: 2000px; /* Réduit pour l'exemple, ajuster si besoin */
     padding: 120px 5%;
     text-align: center;
 }
@@ -165,6 +303,7 @@ img {
     text-align: center;
 }
 
+/* Elements Déco */
 .tungtung {
     display: flex;
     justify-content: center;
@@ -210,10 +349,10 @@ footer {
     padding: 40px;
 }
 
+
 /* --- MOBILE --- */
 @media (max-width: 768px) {
-
-    .hero,
+    .hero, 
     .grid-layout {
         flex-direction: column;
         grid-template-columns: 1fr;
@@ -221,24 +360,16 @@ footer {
         padding-top: 40px;
         padding-bottom: 40px;
     }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-image img {
-        height: 250px;
-    }
-
-    /* Image moins haute sur mobile */
-
-    .grid-layout.reverse .text-block {
-        order: 0;
-    }
-
-    .grid-layout.reverse .image-block {
-        order: 1;
-    }
+    
+    .hero { padding-top: 100px; } /* Plus d'espace pour navbar mobile */
+    .battle-body { grid-template-columns: 1fr; }
+    .fighter-zone.bad { border-right: none; border-bottom: 1px solid #eee; }
+    
+    .popup-box { width: 80%; bottom: 10px; }
+    .popup-left { left: 10%; }
+    .popup-right { right: 10%; }
+    
+    .btn-hand { display: none; } /* Cache les mains sur mobile pour éviter qu'elles sortent */
 }
 
 /* Style de la boîte */
@@ -474,3 +605,4 @@ footer {
     background-color: #e76f51;
     color: white;
 }
+

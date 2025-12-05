@@ -8,13 +8,12 @@
     <meta name="description" content="Site de résistance numérique pour les établissements scolaires." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <script></script>
     <nav class="navbar">
         <div class="logo">Village NIRD<span class="dot">.</span></div>
     </nav>
@@ -26,107 +25,133 @@
                 Découvrez comment reprendre le pouvoir technologique grâce à la démarche NIRD.</p>
         </div>
         <div class="hero-image">
-            <img src="img/un-homme-debout-sur-une-falaise-avec-les-bras-tendus.jpg" alt="Résistance face au géant">
+            <img src="img/un-homme-debout-sur-une-falaise-avec-les-bras-tendus.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'" 
+                 alt="Résistance face au géant">
         </div>
     </header>
 
-    <section id="presentation" class="section-container">
-        <div class="grid-layout">
-            <div class="text-block">
-                <h2>Le piège de l'obsolescence programmée</h2>
-                <p>
-                    La fin du support de <strong>Windows 10</strong> est un ultimatum : jeter des milliers d'ordinateurs
-                    fonctionnels ou payer des licences coûteuses.
-                </p>
-                <p>
-                    Face à ce "Goliath" numérique qui verrouille nos écosystèmes et stocke nos données hors de l'UE,
-                    l'école doit réagir. Accepterons-nous de tout remplacer, ou choisirons-nous l'autonomie ?
-                </p>
+    <!-- SECTION COMBATS / DUELS -->
+    <section class="battle-arena">
+        <div class="section-title">
+            <h2>L'Arène des Alternatives</h2>
+            <p>Pourquoi jeter des PC fonctionnels quand on peut changer le moteur ? Voici les duels qui définissent notre avenir numérique.</p>
+        </div>
+
+        <!-- COMBAT 1 : OS -->
+        <div class="battle-card">
+            <div class="battle-header">
+                <div class="fighter-name" style="color: #c0392b">🏢 GOLIATH (Propriétaire)</div>
+                <div class="vs-badge">VS</div>
+                <div class="fighter-name" style="color: #27ae60">🌿 DAVID (Open Source)</div>
             </div>
-            <div class="image-block">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                    alt="Obsolescence technologique">
+            
+            <div class="battle-body">
+                <!-- Windows 10 -->
+                <div class="fighter-zone bad">
+                    <h3>Windows 10 / 11</h3>
+                    <p><em>Le Colosse aux pieds d'argile</em></p>
+                    <ul class="stat-list">
+                        <li><strong>Fin de support Oct 2025 :</strong> Votre PC devient vulnérable ou "bon pour la casse".</li>
+                        <li><strong>Obsolescence forcée :</strong> Windows 11 exige des puces récentes (TPM 2.0).</li>
+                        <li><strong>Mouchards :</strong> Collecte de données envoyées aux USA (Hors RGPD).</li>
+                        <li><strong>Coût :</strong> Licences chères pour l'éducation.</li>
+                    </ul>
+                </div>
+
+                <!-- Linux Mint -->
+                <div class="fighter-zone good">
+                    <h3>Linux Mint / Ubuntu</h3>
+                    <p><em>Le Résistant Agile</em></p>
+                    <ul class="stat-list">
+                        <li><strong>Immortel :</strong> Tourne parfaitement sur des PC de 10 ans d'âge.</li>
+                        <li><strong>Sécurisé :</strong> Pas de virus classiques, mises à jour transparentes.</li>
+                        <li><strong>Respectueux :</strong> Vos données restent sur VOTRE machine.</li>
+                        <li><strong>Gratuit :</strong> 0€ de licence, pour toujours.</li>
+                    </ul>
+                </div>
+
+                <!-- Tutoriel Linux -->
+                <div class="battle-tutorial">
+                    <h3>🛠️ Guide Tactique : Comment passer à Linux ?</h3>
+                    <p>Contrairement aux idées reçues, installer Linux en 2025 est plus simple que d'installer Windows. Voici la marche à suivre pour sauver un PC :</p>
+                    
+                    <div class="step-grid">
+                        <div class="step-card">
+                            <span class="step-num">1. Clé Magique</span>
+                            Téléchargez l'ISO de <strong>Linux Mint</strong> (édition Cinnamon) et utilisez le logiciel <em>Ventoy</em> ou <em>Rufus</em> pour la mettre sur une clé USB.
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">2. Démarrage</span>
+                            Insérez la clé, redémarrez le PC et tapotez F12 (ou Suppr) pour démarrer sur la clé USB.
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">3. Installation</span>
+                            Cliquez sur "Installer". L'installateur gère tout (wifi, disques). Vous pouvez même le tester sans l'installer ("Live USB").
+                        </div>
+                    </div>
+
+                    <div class="install-comparison">
+                        <h4>💡 Le Choc des Cultures : Installer un logiciel</h4>
+                        <p><strong>Sur Windows :</strong> Vous cherchez un ".exe" sur Google, vous risquez de télécharger un virus, vous cliquez "Suivant, Suivant, Accepter les pubs".</p>
+                        <p style="margin-top: 10px;"><strong>Sur Linux (La voie Royale) :</strong> Tout se passe dans la <strong>Logithèque</strong> (comme l'App Store sur votre téléphone). C'est centralisé, sécurisé et automatique.</p>
+                        <span class="code-snippet">
+                            # Ou pour les pros du terminal, une seule ligne suffit :<br>
+                            sudo apt install vlc firefox libreoffice
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMBAT 2 : Bureautique -->
+        <div class="battle-card">
+            <div class="battle-header">
+                <div class="fighter-name" style="color: #c0392b">🔒 Suite Office 365</div>
+                <div class="vs-badge">VS</div>
+                <div class="fighter-name" style="color: #27ae60">🔓 LibreOffice / OpenOffice</div>
+            </div>
+            
+            <div class="battle-body">
+                <!-- MS Office -->
+                <div class="fighter-zone bad">
+                    <h3>Microsoft Office</h3>
+                    <ul class="stat-list">
+                        <li><strong>Prison Dorée :</strong> Formats fermés (.docx) qui changent souvent pour forcer la mise à jour.</li>
+                        <li><strong>Abonnement :</strong> Paiement récurrent, sinon plus d'accès.</li>
+                        <li><strong>Cloud dépendant :</strong> Pousse à stocker sur OneDrive.</li>
+                    </ul>
+                </div>
+
+                <!-- LibreOffice -->
+                <div class="fighter-zone good">
+                    <h3>LibreOffice</h3>
+                    <ul class="stat-list">
+                        <li><strong>Langage Universel :</strong> Format OpenDocument (.odt) lisible par tous, pour l'éternité.</li>
+                        <li><strong>Gratuit & Puissant :</strong> Tout ce qu'un élève ou prof doit faire (Texte, Diapo, Tableur).</li>
+                        <li><strong>Souverain :</strong> Installé localement, pas de cloud obligatoire.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section-container bg-grey">
-        <div class="grid-layout reverse">
-            <div class="text-block">
-                <h2>La réponse NIRD : Une alternative durable</h2>
-                <p>
-                    Nous ne sommes pas démunis. La démarche <strong>NIRD</strong> (Numérique Inclusif, Responsable et
-                    Durable) redonne le pouvoir d'agir aux équipes éducatives.
-                </p>
-                <ul class="clean-list">
-                    <li>✓ <strong>Inclusif :</strong> Accessible à tous, sans barrière financière.</li>
-                    <li>✓ <strong>Responsable :</strong> Souveraineté des données (RGPD).</li>
-                    <li>✓ <strong>Durable :</strong> Réemploi du matériel existant.</li>
-                </ul>
-            </div>
-            <div class="image-block">
-                <img src="https://images.unsplash.com/photo-1445462657202-a0893228a1e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                    alt="Solutions durables">
-            </div>
-        </div>
-    </section>
-    <section class="section-container">
-        <div class="grid-layout">
-            <div class="text-block">
-                <h2>La Forge : Nos armes sont libres</h2>
-                <p>
-                    Contre les écosystèmes fermés, nous opposons la <strong>Forge des communs numériques</strong>. Des
-                    outils partagés, modifiables et gratuits pour l'éducation.
-                </p>
-                <p>
-                    En mutualisant nos ressources et en adoptant des logiciels libres, nous brisons les chaînes de la
-                    dépendance. C'est ici que se construit l'indépendance de demain.
-                </p>
-            </div>
-            <div class="image-block">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                    alt="Réseau libre et ouvert">
-            </div>
-        </div>
-    </section>
-
+    <!-- Transition vers la suite du site -->
     <section class="section-container bg-grey">
         <div class="grid-layout reverse">
             <div class="text-block">
                 <h2>Un village entier mobilisé</h2>
                 <p>
                     La résistance n'est pas l'affaire de quelques techniciens. Élèves, éco-délégués, enseignants,
-                    collectivités : c'est tout un écosystème qui se transforme.
+                    collectivités : c'est tout un écosystème qui se transforme grâce à ces outils.
                 </p>
                 <p>
-                    Ensemble, nous co-construisons des solutions locales. Comme dans le célèbre village gaulois,
-                    l'ingéniosité collective est notre meilleure défense.
+                    En adoptant Linux et les logiciels libres, nous ne faisons pas que de l'économie : nous faisons de l'écologie politique.
                 </p>
             </div>
             <div class="image-block">
                 <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                     alt="Travail d'équipe">
-            </div>
-        </div>
-    </section>
-
-    <section class="section-container">
-        <div class="grid-layout">
-            <div class="text-block">
-                <h2>3 actions pour résister dès demain</h2>
-                <p>Pas besoin de potion magique, juste du bon sens :</p>
-                <ul class="clean-list">
-                    <li><strong>1. Passer à Linux :</strong> Installez un système libre pour prolonger la vie de vos
-                        vieux PC.</li>
-                    <li><strong>2. Le Réemploi :</strong> Ne jetez plus ! Reconditionnez le matériel au sein de
-                        l'établissement.</li>
-                    <li><strong>3. La Sobriété :</strong> Stockez moins, stockez local, et éduquez à l'impact carbone du
-                        numérique.</li>
-                </ul>
-            </div>
-            <div class="image-block">
-                <img src="img/professionnel-du-design-moderne-travaillant-sur-un-bureau-en-bois-a-l-interieur-genere-par-l-ia.jpg"
-                    alt="Atelier de réparation">
             </div>
         </div>
     </section>
