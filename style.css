@@ -339,3 +339,62 @@ footer {
     border-right: 5px solid #6366f1;
     /* Bleu (Indigo) pour changer */
 }
+
+/* Le conteneur qui tient la vidéo et les boutons ensemble */
+.video-wrapper {
+    position: relative;
+    /* Indispensable : c'est le point de repère */
+    width: 100%;
+    max-width: 1600px;
+    /* Limite la largeur pour pas que ça soit géant */
+    margin: 20px auto;
+    /* Centre le bloc */
+    display: block;
+}
+
+/* Style de la vidéo pour qu'elle remplisse le conteneur */
+.video-wrapper video {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+/* Le style commun des deux boutons */
+.btn-hand {
+    position: absolute;
+    /* Permet de flotter au-dessus de la vidéo */
+    bottom: 30%;
+    /* Hauteur : À ajuster selon où sont vos mains ! */
+    z-index: 10;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fond blanc un peu transparent */
+    color: #264653;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-hand:hover {
+    transform: scale(1.1);
+    /* Grossit un peu au survol */
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Positionnement précis Gauche / Droite */
+.btn-hand.left {
+    left: 35%;
+    margin-bottom: 15%;
+    /* À 10% du bord gauche */
+}
+
+.btn-hand.right {
+    right: 35%;
+    margin-bottom: 15%;
+    /* À 10% du bord droit */
+}
