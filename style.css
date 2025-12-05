@@ -262,7 +262,6 @@ footer {
     /* Empêche de cliquer quand invisible */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     /* Effet rebond sympa */
-<<<<<<< HEAD
     border-left: 5px solid #10b981;
     /* Vert NIRD */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -277,8 +276,6 @@ footer {
     /* Empêche de cliquer quand invisible */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     /* Effet rebond sympa */
-=======
->>>>>>> a61732e (ajout index sahur et popup)
 }
 
 /* État affiché */
@@ -315,13 +312,10 @@ footer {
 #closePopupBtn:hover {
     color: #333;
 }
-<<<<<<< HEAD
 
 #closePopupBtn:hover {
     color: #333;
 }
-=======
->>>>>>> a61732e (ajout index sahur et popup)
 
 .btn-mini {
     display: inline-block;
@@ -336,10 +330,6 @@ footer {
     right: 30px;
     border-left: 5px solid #10b981;
     /* Vert */
-<<<<<<< HEAD
-
-=======
->>>>>>> a61732e (ajout index sahur et popup)
 }
 
 
